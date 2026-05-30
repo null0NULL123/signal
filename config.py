@@ -101,6 +101,14 @@ _REQUIRED_ENV_VARS = [
     "MODEL_NAME",
 ]
 
+_SMTP_ENV_VARS = [
+    "SMTP_SERVER",
+    "SMTP_PORT",
+    "SMTP_SENDER",
+    "SMTP_AUTH_CODE",
+    "SMTP_RECEIVER",
+]
+
 
 # ---------------------------------------------------------------------------
 # Environment loading
@@ -120,7 +128,13 @@ def load_env(env_path: str | None = None) -> None:
             if key and key not in os.environ:
                 os.environ[key] = value
 
-    missing = [v for v in _REQUIRED_ENV_VARS if not os.environ.get(v)]
+
+def validate_env(include_smtp: bool = True) -> None:
+    """Validate required env vars. Raises EnvironmentError if any are missing."""
+    required = list(_REQUIRED_ENV_VARS)
+    if include_smtp:
+        required.extend(_SMTP_ENV_VARS)
+    missing = [v for v in required if not os.environ.get(v)]
     if missing:
         raise EnvironmentError(f"Missing required environment variables: {', '.join(missing)}")
 

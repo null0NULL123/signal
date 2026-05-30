@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 import sys
 
 from config import (
@@ -19,6 +18,7 @@ from config import (
     DEFAULT_PROMPT_NAME,
     load_env,
     load_sources,
+    validate_env,
     get_summary_days,
     get_summary_language,
 )
@@ -38,6 +38,7 @@ def setup_logging(verbose: bool = False) -> None:
 def cmd_run(args: argparse.Namespace) -> None:
     """Run the full pipeline: fetch -> dedup -> save -> summarize -> deliver."""
     load_env()
+    validate_env(include_smtp=not args.no_email)
 
     from channels.file import FileChannel
     from channels.github_pages import GitHubPagesChannel
@@ -49,13 +50,10 @@ def cmd_run(args: argparse.Namespace) -> None:
         log.error(f"No sources found in {args.feeds}")
         sys.exit(1)
 
-    # Email is optional — only add if SMTP is configured
     channels: list = [FileChannel(), GitHubPagesChannel()]
-    if os.environ.get("SMTP_SENDER") and os.environ.get("SMTP_AUTH_CODE"):
+    if not args.no_email:
         from channels.email import EmailChannel
         channels.append(EmailChannel())
-    else:
-        log.info("SMTP not configured, skipping email delivery")
 
     Pipeline(
         sources=sources,
@@ -129,6 +127,7 @@ def _build_parser() -> argparse.ArgumentParser:
     p_run.add_argument("--days", type=int, default=None, help="Days of articles to fetch")
     p_run.add_argument("--language", default=None, help="Target language for digest")
     p_run.add_argument("--profile", default=None, help=f"Prompt profile name (default: {DEFAULT_PROMPT_NAME})")
+    p_run.add_argument("--no-email", action="store_true", help="Skip email delivery (use with GitHub Pages / file output only)")
 
     p_fetch = sub.add_parser("fetch", help="Fetch and store articles only")
     p_fetch.add_argument("--days", type=int, default=None, help="Days of articles to fetch")

@@ -112,7 +112,9 @@ Fork 项目后，在仓库 Settings → Secrets and variables → Actions 中添
 | `API_KEY` | API 密钥 | `sk-xxx` |
 | `MODEL_NAME` | 模型名 | `deepseek-chat` |
 
-**可选（邮件推送）：**
+**邮件推送（可选）：**
+
+不发邮件可以跳过，用 `--no-email` 参数即可。需要邮件则配置以下 Secrets：
 
 | Secret | 说明 |
 |---|---|
@@ -121,8 +123,6 @@ Fork 项目后，在仓库 Settings → Secrets and variables → Actions 中添
 | `SMTP_SENDER` | 发件邮箱 |
 | `SMTP_AUTH_CODE` | 邮箱授权码 |
 | `SMTP_RECEIVER` | 收件邮箱 |
-
-不配置 SMTP 也能用——周报会保存为文件和 GitHub Pages 页面。
 
 配置完成后，每周一北京时间 17:00 自动运行。也可在 Actions 页面手动触发。
 
