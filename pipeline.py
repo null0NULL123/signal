@@ -18,6 +18,7 @@ from processors.dedup import DedupProcessor
 from processors.summarizer import SummarizeProcessor
 from sources.base import BaseSource
 from sources.rss import RSSSource
+from sources.web import WebSource
 from storage.base import BaseStorage
 
 log = logging.getLogger("signal")
@@ -27,6 +28,7 @@ log = logging.getLogger("signal")
 # ---------------------------------------------------------------------------
 SOURCE_REGISTRY: dict[str, type[BaseSource]] = {
     "rss": RSSSource,
+    "web": WebSource,
 }
 
 

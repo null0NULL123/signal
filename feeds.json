@@ -23,5 +23,17 @@
     "name": "The Pragmatic Engineer",
     "url": "https://newsletter.pragmaticengineer.com/feed",
     "lang": "en"
+  },
+  {
+    "name": "Hacker News",
+    "url": "https://news.ycombinator.com/",
+    "lang": "en",
+    "source_type": "web",
+    "metadata": {
+      "selector": ".athing",
+      "title_sel": ".titleline > a",
+      "summary_sel": "",
+      "link_sel": ".titleline > a"
+    }
   }
 ]

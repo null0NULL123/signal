@@ -86,6 +86,7 @@ def load_sources(feeds_path: str = _DEFAULT_FEEDS_PATH) -> list[SourceConfig]:
             source_type=item.get("source_type", "rss"),
             enabled=item.get("enabled", True),
             tags=item.get("tags", []),
+            metadata=item.get("metadata", {}),
         ))
 
     return sources

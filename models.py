@@ -19,6 +19,7 @@ class SourceConfig:
     source_type: str = "rss"
     enabled: bool = True
     tags: list[str] = field(default_factory=list)
+    metadata: dict = field(default_factory=dict)  # source-type specific config (CSS selectors, etc.)
 
 
 @dataclass
