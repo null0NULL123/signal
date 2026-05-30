@@ -169,20 +169,20 @@ python3 cli.py
 | **AI 论文** | arXiv (cs.AI/cs.CL/cs.LG)、Papers With Code... | 新架构、SOTA 突破、开源发布 |
 | **行业动态** | 36氪、TechCrunch、Product Hunt... | 产品发布、融资、市场趋势 |
 
-实现方式：通过 `--profile` 参数指定不同的配置目录，每个目录有独立的 `feeds.json` 和 prompt：
+实现方式：通过 `--profile` 切换 prompt 模板，通过 `--feeds` 切换数据源：
 
 ```bash
-python3 cli.py run --profile tech       # 技术周报
-python3 cli.py run --profile finance    # 投研周报
-python3 cli.py run --profile papers     # 论文周报
+python3 cli.py run --profile tech-weekly                    # 技术周报（默认源）
+python3 cli.py run --profile finance-weekly --feeds finance.json  # 投研周报
+python3 cli.py run --profile papers-weekly --feeds papers.json    # 论文周报
 ```
 
 也可以设不同的发送时间：
 
 ```
-0 8 * * 1   python3 cli.py run --profile tech       # 周一 8:00 技术
-0 9 * * 1   python3 cli.py run --profile finance     # 周一 9:00 投研
-0 8 * * 5   python3 cli.py run --profile papers      # 周五 8:00 论文
+0 8 * * 1   python3 cli.py run --profile tech-weekly
+0 9 * * 1   python3 cli.py run --profile finance-weekly --feeds finance.json
+0 8 * * 5   python3 cli.py run --profile papers-weekly --feeds papers.json
 ```
 
 ## 测试
