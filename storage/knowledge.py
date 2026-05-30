@@ -10,6 +10,7 @@ import json
 import os
 import re
 import sqlite3
+import struct
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -21,6 +22,7 @@ from config import (
     DEFAULT_DB_PATH,
     DEFAULT_EMBEDDING_DIM,
     EMBEDDING_MAX_INPUT_LENGTH,
+    EMBEDDING_RETENTION_MONTHS,
     HASH_TRUNCATE_LENGTH,
     LOCALE,
     MAX_KEYWORD_SEARCH,
@@ -159,6 +161,11 @@ class KnowledgeStorage(BaseStorage):
         except Exception:
             return None
 
+    @staticmethod
+    def _pack_embedding(emb: list[float]) -> bytes:
+        """Serialize embedding to compact binary (Float32 array)."""
+        return struct.pack(f"{len(emb)}f", *emb)
+
     # ------------------------------------------------------------------
     # Batch existence check
     # ------------------------------------------------------------------
@@ -218,9 +225,9 @@ class KnowledgeStorage(BaseStorage):
             except sqlite3.IntegrityError:
                 pass
 
-        # Batch insert embeddings
+        # Batch insert embeddings (binary Float32 format, ~60% smaller than JSON)
         embed_rows = [
-            (aid, json.dumps(emb))
+            (aid, self._pack_embedding(emb))
             for aid, entry in article_ids
             if (emb := self._get_embedding(f"{entry.title} {entry.summary}"))
         ]
@@ -254,6 +261,27 @@ class KnowledgeStorage(BaseStorage):
         )
         db.commit()
 
+    def cleanup_old_embeddings(self, months: int | None = None) -> int:
+        """Remove embeddings older than N months. Articles are kept, only vectors are deleted."""
+        months = months or get_int("EMBEDDING_RETENTION_MONTHS", EMBEDDING_RETENTION_MONTHS)
+        db = self._get_db()
+        cutoff_week = self._week_id(datetime.now(timezone.utc) - timedelta(days=months * 30))
+        # Find article IDs older than cutoff that have embeddings
+        old_ids = [
+            r[0] for r in db.execute(
+                "SELECT a.id FROM articles a JOIN article_vec v ON a.id = v.article_id WHERE a.week < ?",
+                (cutoff_week,),
+            ).fetchall()
+        ]
+        if not old_ids:
+            return 0
+        for i in range(0, len(old_ids), 500):
+            batch = old_ids[i:i + 500]
+            ph = ",".join("?" for _ in batch)
+            db.execute(f"DELETE FROM article_vec WHERE article_id IN ({ph})", batch)
+        db.commit()
+        return len(old_ids)
+
     # ------------------------------------------------------------------
     # Query operations
     # ------------------------------------------------------------------
@@ -280,7 +308,7 @@ class KnowledgeStorage(BaseStorage):
             JOIN articles a ON a.id = v.article_id
             WHERE v.embedding MATCH vec_f32(?) AND k = ?
             ORDER BY v.distance ASC
-        """, (json.dumps(embedding), limit)).fetchall()
+        """, (self._pack_embedding(embedding), limit)).fetchall()
         db.row_factory = None
         return [self._row_to_article(r) for r in rows]
 
@@ -301,7 +329,7 @@ class KnowledgeStorage(BaseStorage):
                 JOIN articles a ON a.id = v.article_id
                 WHERE v.embedding MATCH vec_f32(?) AND k = ?
                 ORDER BY v.distance ASC
-            """, (json.dumps(embedding), limit_per_query)).fetchall()
+            """, (self._pack_embedding(embedding), limit_per_query)).fetchall()
             for r in rows:
                 if r["id"] not in seen:
                     seen.add(r["id"])

@@ -107,6 +107,12 @@ class Pipeline:
                     log.error(f"Channel {channel.name} failed: {e}")
 
             self.storage.save_digest(digest)
+
+            # Clean up old embeddings to keep DB size manageable
+            cleaned = self.storage.cleanup_old_embeddings()
+            if cleaned:
+                log.info(f"Cleaned {cleaned} old embeddings (kept articles)")
+
             return digest
         finally:
             self.storage.close()
