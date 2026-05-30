@@ -100,29 +100,45 @@ channels=[FileChannel(), EmailChannel(), WechatChannel()]
 
 ## 部署
 
-### Android（推荐）
+### GitHub Actions（零运维）
+
+Fork 项目后，在仓库 Settings → Secrets and variables → Actions 中添加以下 Secrets：
+
+| Secret | 说明 | 示例 |
+|---|---|---|
+| `API_BASE_URL` | LLM API 地址 | `https://api.deepseek.com/v1` |
+| `API_KEY` | API 密钥 | `sk-xxx` |
+| `MODEL_NAME` | 模型名 | `deepseek-chat` |
+| `SMTP_SERVER` | SMTP 服务器 | `smtp.qq.com` |
+| `SMTP_PORT` | SMTP 端口 | `587` |
+| `SMTP_SENDER` | 发件邮箱 | `xxx@qq.com` |
+| `SMTP_AUTH_CODE` | 邮箱授权码 | 见下方说明 |
+| `SMTP_RECEIVER` | 收件邮箱 | `xxx@qq.com` |
+
+配置完成后，每周一北京时间 17:00 自动运行。也可在 Actions 页面手动触发。
+
+如需启用 GitHub Pages 展示周报页面，在仓库 Settings → Pages 中选择 `gh-pages` 分支。
+
+### 本地运行
 
 ```bash
-# 1. 安装 Termux (F-Droid 版本)
-# 2. 克隆项目
-git clone <repo> signal && cd signal
-# 3. 一键安装
-bash setup.sh
-# 4. 编辑 .env 填入密钥和邮箱
-vi .env
-# 5. 手动测试
-.venv/bin/python3 cli.py
-# 6. 启动定时任务
-crond
-```
-
-### 任何有 Python 3.10+ 的环境
-
-```bash
+git clone <repo> && cd signal
 pip install -r requirements.txt
 cp .env.example .env
+vi .env          # 填入你的配置
+python3 cli.py run
+```
+
+### Android（可选）
+
+Termux 环境下可一键部署：
+
+```bash
+git clone <repo> signal && cd signal
+bash setup.sh
 vi .env
-python3 cli.py
+.venv/bin/python3 cli.py run
+crond  # 启动定时任务
 ```
 
 ## 配置
