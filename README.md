@@ -2,6 +2,8 @@
 
 自动从你关注的信息源收集内容，用 AI 生成结构化摘要，投递到你常用的平台。
 
+[English](docs/en/README.md) | **中文**
+
 ## 背景
 
 你是否也有这样的困扰：
@@ -55,6 +57,14 @@ streamlit run app.py
 | [架构设计](docs/architecture.md) | 三层管道、反馈系统、知识积累、实现方案 |
 | [部署指南](docs/deployment.md) | GitHub Actions、本地运行、Android、配置、订阅源管理 |
 | [竞品对比](docs/competitive-analysis.md) | 与 RSSHub / Folo / ClawFeed 等项目的对比 |
+
+## Documentation (English)
+
+| Document | Content |
+|---|---|
+| [Architecture Design](docs/en/architecture.md) | Three-layer pipeline, feedback system, knowledge accumulation, implementation details |
+| [Deployment Guide](docs/en/deployment.md) | GitHub Actions, local running, Android, configuration, subscription source management |
+| [Competitive Analysis](docs/en/competitive-analysis.md) | Comparison with RSSHub / Folo / ClawFeed and other projects |
 
 ## 测试
 

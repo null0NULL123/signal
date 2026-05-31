@@ -201,7 +201,7 @@ def _build_parser() -> argparse.ArgumentParser:
         description="Signal - RSS weekly digest with AI summary and email delivery",
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable debug logging")
-    parser.add_argument("--workspace", "-w", default=None, help=f"Workspace name (default: {ws.DEFAULT_WORKSPACE})")
+    parser.add_argument("--workspace", "-w", default=ws.DEFAULT_WORKSPACE, help=f"Workspace name (default: {ws.DEFAULT_WORKSPACE})")
     parser.add_argument("--feeds", default=None, help=f"Path to feeds.json (default: {DEFAULT_FEEDS_PATH})")
 
     sub = parser.add_subparsers(dest="command", help="Available commands")
