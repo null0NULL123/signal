@@ -1,0 +1,12 @@
+services:
+  signal:
+    build: .
+    container_name: signal
+    env_file: .env
+    volumes:
+      - ./feeds.json:/app/feeds.json:ro
+      - ./output:/app/output
+      - ./knowledge:/app/knowledge
+      - ./site:/app/site
+    # Override CMD to run full pipeline
+    command: ["run"]

@@ -41,6 +41,17 @@ vi .env              # 填入 API_KEY 等配置
 python3 cli.py run   # 生成第一期周报
 ```
 
+容器部署（Podman / Docker）：
+
+```bash
+podman build -t signal:latest .
+podman run --rm --env-file .env \
+  -v ./feeds.json:/app/feeds.json:ro \
+  -v ./output:/app/output \
+  -v ./knowledge:/app/knowledge \
+  signal:latest run
+```
+
 可选 Web UI：
 
 ```bash
@@ -48,7 +59,7 @@ pip install -r requirements-ui.txt
 streamlit run app.py
 ```
 
-→ [部署指南（GitHub Actions / Android / 配置详解）](docs/deployment.md)
+→ [部署指南（GitHub Actions / 容器 / Android / 配置详解）](docs/deployment.md)
 
 ## 文档
 

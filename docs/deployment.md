@@ -28,6 +28,54 @@ Fork 项目后，在仓库 Settings → Secrets and variables → Actions 中添
 
 如需启用 GitHub Pages 展示周报页面，在仓库 Settings → Pages 中选择 `gh-pages` 分支。
 
+## 容器部署（Podman / Docker）
+
+支持 Podman 和 Docker，镜像约 340MB（Python 3.12 slim + 依赖）。
+
+**快速启动：**
+
+```bash
+# 构建镜像
+podman build -t signal:latest .
+
+# 运行（传入环境变量，挂载必要目录）
+podman run --rm \
+  --env-file .env \
+  -v ./feeds.json:/app/feeds.json:ro \
+  -v ./output:/app/output \
+  -v ./knowledge:/app/knowledge \
+  -v ./site:/app/site \
+  signal:latest run
+```
+
+**使用 docker-compose：**
+
+```bash
+podman compose up
+```
+
+`docker-compose.yml` 已配置好环境变量和卷挂载。
+
+**网络问题排查：**
+
+如果容器内需要代理，在 `podman run` 时传入：
+
+```bash
+-e HTTP_PROXY=http://host.docker.internal:7897 \
+-e HTTPS_PROXY=http://host.docker.internal:7897
+```
+
+**定时任务：**
+
+```bash
+# 每周一 17:00 北京时间运行
+0 9 * * 1 podman run --rm --env-file .env \
+  -v /path/to/feeds.json:/app/feeds.json:ro \
+  -v /path/to/output:/app/output \
+  -v /path/to/knowledge:/app/knowledge \
+  signal:latest run
+```
+
 ## 本地运行
 
 ```bash

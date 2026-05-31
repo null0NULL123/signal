@@ -12,6 +12,7 @@ from config import (
     MAX_KEYWORD_SEARCH,
     MAX_SEMANTIC_QUERIES,
     MIN_KEYWORD_LENGTH,
+    get_int,
 )
 from models import ArticleRecord, Entry, FeedResult
 

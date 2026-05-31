@@ -41,6 +41,17 @@ vi .env              # Fill in API_KEY and other configurations
 python3 cli.py run   # Generate your first weekly report
 ```
 
+Container deployment (Podman / Docker):
+
+```bash
+podman build -t signal:latest .
+podman run --rm --env-file .env \
+  -v ./feeds.json:/app/feeds.json:ro \
+  -v ./output:/app/output \
+  -v ./knowledge:/app/knowledge \
+  signal:latest run
+```
+
 Optional Web UI:
 
 ```bash
@@ -48,7 +59,7 @@ pip install -r requirements-ui.txt
 streamlit run app.py
 ```
 
-→ [Deployment Guide (GitHub Actions / Android / Configuration Details)](../deployment.md)
+→ [Deployment Guide (GitHub Actions / Container / Android / Configuration Details)](../deployment.md)
 
 ## Documentation
 

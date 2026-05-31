@@ -28,6 +28,54 @@ After configuration, it automatically runs every Monday at 17:00 Beijing time. C
 
 To enable GitHub Pages for displaying report pages, select `gh-pages` branch in repository Settings → Pages.
 
+## Container Deployment (Podman / Docker)
+
+Podman and Docker are supported. Image size ~340MB (Python 3.12 slim + dependencies).
+
+**Quick start:**
+
+```bash
+# Build image
+podman build -t signal:latest .
+
+# Run (pass env vars, mount necessary directories)
+podman run --rm \
+  --env-file .env \
+  -v ./feeds.json:/app/feeds.json:ro \
+  -v ./output:/app/output \
+  -v ./knowledge:/app/knowledge \
+  -v ./site:/app/site \
+  signal:latest run
+```
+
+**Using docker-compose:**
+
+```bash
+podman compose up
+```
+
+`docker-compose.yml` has env vars and volume mounts pre-configured.
+
+**Network troubleshooting:**
+
+If the container needs a proxy, pass it via:
+
+```bash
+-e HTTP_PROXY=http://host.docker.internal:7897 \
+-e HTTPS_PROXY=http://host.docker.internal:7897
+```
+
+**Scheduled tasks:**
+
+```bash
+# Run every Monday 17:00 Beijing time (09:00 UTC)
+0 9 * * 1 podman run --rm --env-file .env \
+  -v /path/to/feeds.json:/app/feeds.json:ro \
+  -v /path/to/output:/app/output \
+  -v /path/to/knowledge:/app/knowledge \
+  signal:latest run
+```
+
 ## Local Running
 
 ```bash
