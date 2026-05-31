@@ -38,6 +38,7 @@ jobs:
           SMTP_RECEIVER: ${{ secrets.SMTP_RECEIVER }}
           SUMMARY_DAYS: '7'
           SUMMARY_LANGUAGE: 'zh-CN'
+          GITHUB_REPO_URL: 'https://github.com/null0NULL123/sift'
         run: python3 cli.py run  # add --email to enable email delivery
 
       - name: Commit and push docs
