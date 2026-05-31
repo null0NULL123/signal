@@ -34,7 +34,7 @@ Sources ──▶ Pipeline ◀──▶ KnowledgeStorage ◀──▶ Channels
 ## 快速开始
 
 ```bash
-git clone <repo> && cd signal
+git clone <repo> && cd sift
 pip install -r requirements.txt
 cp .env.example .env
 vi .env              # 填入 API_KEY 等配置
@@ -44,12 +44,12 @@ python3 cli.py run   # 生成第一期周报
 容器部署（Podman / Docker）：
 
 ```bash
-podman build -t signal:latest .
+podman build -t sift:latest .
 podman run --rm --env-file .env \
   -v ./feeds.json:/app/feeds.json:ro \
   -v ./output:/app/output \
   -v ./knowledge:/app/knowledge \
-  signal:latest run
+  sift:latest run
 ```
 
 可选 Web UI：

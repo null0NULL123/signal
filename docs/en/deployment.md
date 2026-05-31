@@ -36,7 +36,7 @@ Podman and Docker are supported. Image size ~340MB (Python 3.12 slim + dependenc
 
 ```bash
 # Build image
-podman build -t signal:latest .
+podman build -t sift:latest .
 
 # Run (pass env vars, mount necessary directories)
 podman run --rm \
@@ -45,7 +45,7 @@ podman run --rm \
   -v ./output:/app/output \
   -v ./knowledge:/app/knowledge \
   -v ./site:/app/site \
-  signal:latest run
+  sift:latest run
 ```
 
 **Using docker-compose:**
@@ -73,13 +73,13 @@ If the container needs a proxy, pass it via:
   -v /path/to/feeds.json:/app/feeds.json:ro \
   -v /path/to/output:/app/output \
   -v /path/to/knowledge:/app/knowledge \
-  signal:latest run
+  sift:latest run
 ```
 
 ## Local Running
 
 ```bash
-git clone <repo> && cd signal
+git clone <repo> && cd sift
 pip install -r requirements.txt        # CLI only
 # pip install -r requirements-ui.txt   # CLI + Web UI (optional)
 cp .env.example .env
@@ -103,7 +103,7 @@ Web UI provides two pages + sidebar:
 One-click deployment under Termux environment:
 
 ```bash
-git clone <repo> signal && cd signal
+git clone <repo> sift && cd sift
 bash setup.sh
 vi .env
 .venv/bin/python3 cli.py run

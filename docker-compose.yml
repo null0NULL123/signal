@@ -1,7 +1,7 @@
 services:
-  signal:
+  sift:
     build: .
-    container_name: signal
+    container_name: sift
     env_file: .env
     volumes:
       - ./feeds.json:/app/feeds.json:ro

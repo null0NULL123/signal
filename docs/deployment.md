@@ -36,7 +36,7 @@ Fork 项目后，在仓库 Settings → Secrets and variables → Actions 中添
 
 ```bash
 # 构建镜像
-podman build -t signal:latest .
+podman build -t sift:latest .
 
 # 运行（传入环境变量，挂载必要目录）
 podman run --rm \
@@ -45,7 +45,7 @@ podman run --rm \
   -v ./output:/app/output \
   -v ./knowledge:/app/knowledge \
   -v ./site:/app/site \
-  signal:latest run
+  sift:latest run
 ```
 
 **使用 docker-compose：**
@@ -73,13 +73,13 @@ podman compose up
   -v /path/to/feeds.json:/app/feeds.json:ro \
   -v /path/to/output:/app/output \
   -v /path/to/knowledge:/app/knowledge \
-  signal:latest run
+  sift:latest run
 ```
 
 ## 本地运行
 
 ```bash
-git clone <repo> && cd signal
+git clone <repo> && cd sift
 pip install -r requirements.txt        # 纯 CLI
 # pip install -r requirements-ui.txt   # CLI + Web UI（可选）
 cp .env.example .env
@@ -103,7 +103,7 @@ Web UI 提供两个页面 + 侧边栏：
 Termux 环境下可一键部署：
 
 ```bash
-git clone <repo> signal && cd signal
+git clone <repo> sift && cd sift
 bash setup.sh
 vi .env
 .venv/bin/python3 cli.py run

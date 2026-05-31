@@ -1,8 +1,8 @@
 #!/bin/bash
-# Signal - One-click setup for Termux (Android)
+# Sift - One-click setup for Termux (Android)
 set -e
 
-echo "=== Signal Setup ==="
+echo "=== Sift Setup ==="
 
 # Check Python
 if ! command -v python3 &>/dev/null; then

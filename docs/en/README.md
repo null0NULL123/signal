@@ -34,7 +34,7 @@ All components interact around KnowledgeStorage (knowledge.db), Pipeline handles
 ## Quick Start
 
 ```bash
-git clone <repo> && cd signal
+git clone <repo> && cd sift
 pip install -r requirements.txt
 cp .env.example .env
 vi .env              # Fill in API_KEY and other configurations
@@ -44,12 +44,12 @@ python3 cli.py run   # Generate your first weekly report
 Container deployment (Podman / Docker):
 
 ```bash
-podman build -t signal:latest .
+podman build -t sift:latest .
 podman run --rm --env-file .env \
   -v ./feeds.json:/app/feeds.json:ro \
   -v ./output:/app/output \
   -v ./knowledge:/app/knowledge \
-  signal:latest run
+  sift:latest run
 ```
 
 Optional Web UI:
