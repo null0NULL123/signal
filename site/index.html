@@ -52,7 +52,7 @@
   </section>
 
   <!-- Metrics -->
-  <section class="metrics reveal">
+  <section class="metrics">
     <div class="container">
       <div class="metric-grid">
         <div class="metric-item">
@@ -75,128 +75,40 @@
     </div>
   </section>
 
-  <!-- Features Overview -->
-  <section class="features-overview reveal" id="features">
+  <!-- Quick Nav -->
+  <section class="quick-nav">
     <div class="container">
-      <p class="section-tag">核心功能</p>
-      <h2>覆盖信息处理全链路</h2>
-      <div class="overview-grid">
-        <a href="features.html#sources" class="overview-card">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="3"/></svg>
+      <div class="quick-grid">
+        <a href="features.html" class="quick-card">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <h3>多源聚合</h3>
-          <p>RSS、GitHub、Reddit、HN、自定义 API 统一抓取</p>
+          <h3>核心功能</h3>
+          <p>多源聚合、AI 摘要、自动投递、本地优先</p>
+          <span class="quick-link">查看详情 →</span>
         </a>
-        <a href="features.html#ai" class="overview-card">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3>AI 摘要</h3>
-          <p>大模型驱动，结构化输出，支持中英双语</p>
-        </a>
-        <a href="features.html#deliver" class="overview-card">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          </div>
-          <h3>自动投递</h3>
-          <p>邮件、Slack、飞书、Webhook 自动生成即推送</p>
-        </a>
-        <a href="features.html#local" class="overview-card">
-          <div class="overview-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          </div>
-          <h3>本地优先</h3>
-          <p>SQLite 本地存储，Docker 一键部署，隐私可控</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Workflow -->
-  <section class="workflow reveal" id="workflow">
-    <div class="container">
-      <p class="section-tag">工作流</p>
-      <h2>从信息源到你的屏幕，全自动</h2>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-num">01</div>
-          <div class="flow-icon-wrap">
+        <a href="workflow.html" class="quick-card">
+          <div class="quick-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
           </div>
-          <h3>抓取</h3>
-          <p>从配置的信息源<br>自动抓取最新内容</p>
-        </div>
-        <div class="flow-connector">
-          <svg width="48" height="2" viewBox="0 0 48 2"><line x1="0" y1="1" x2="48" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">02</div>
-          <div class="flow-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <h3>处理</h3>
-          <p>去重、分类、AI 生成<br>结构化摘要</p>
-        </div>
-        <div class="flow-connector">
-          <svg width="48" height="2" viewBox="0 0 48 2"><line x1="0" y1="1" x2="48" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">03</div>
-          <div class="flow-icon-wrap">
+          <h3>工作流</h3>
+          <p>从信息源到你的屏幕，四步全自动</p>
+          <span class="quick-link">查看详情 →</span>
+        </a>
+        <a href="digests.html" class="quick-card">
+          <div class="quick-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-          <h3>投递</h3>
-          <p>自动推送到邮件<br>Slack、飞书等渠道</p>
-        </div>
-        <div class="flow-connector">
-          <svg width="48" height="2" viewBox="0 0 48 2"><line x1="0" y1="1" x2="48" y2="1" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/></svg>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">04</div>
-          <div class="flow-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-          </div>
-          <h3>积累</h3>
-          <p>知识归档，向量索引<br>越用越懂你的偏好</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Digests -->
-  <section class="digests reveal" id="digests">
-    <div class="container">
-      <p class="section-tag">周报</p>
-      <h2>最新生成的摘要</h2>
-      <div class="digest-grid">
-        <a href="digests/2026-06-01.html" class="digest-card">
-          <div class="digest-date">2026-06-01</div>
-          <div class="digest-title">技术前沿周报</div>
-          <div class="digest-tags">
-            <span>AI 商业化</span><span>智能体安全</span><span>开发者生态</span>
-          </div>
-        </a>
-        <a href="digests/2026-05-31.html" class="digest-card">
-          <div class="digest-date">2026-05-31</div>
-          <div class="digest-title">技术前沿周报</div>
-          <div class="digest-tags">
-            <span>行业动态</span><span>技术趋势</span>
-          </div>
-        </a>
-        <a href="digests/2026-05-30.html" class="digest-card">
-          <div class="digest-date">2026-05-30</div>
-          <div class="digest-title">技术前沿周报</div>
-          <div class="digest-tags">
-            <span>行业动态</span><span>技术趋势</span>
-          </div>
+          <h3>周报摘要</h3>
+          <p>查看 AI 自动生成的最新技术周报</p>
+          <span class="quick-link">查看详情 →</span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta reveal">
+  <section class="cta">
     <div class="container">
       <h2>开始使用 Sift</h2>
       <p>几分钟部署，从此不再错过重要信息</p>
@@ -209,19 +121,8 @@
   <div id="footer-include"></div>
 
   <script>
-    // Load partials
     fetch('/partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
     fetch('/partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Sticky nav
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('.nav');
       if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
