@@ -47,10 +47,7 @@ def test_github_pages_channel():
             html_files = list(digests_dir.glob("*.html"))
             assert len(html_files) == 1
             assert "Hello" in html_files[0].read_text()
-
-            index = tmpdir / "index.html"
-            assert index.exists()
-            assert "Sift" in index.read_text()
+            assert "article-page" in html_files[0].read_text()
 
 
 def test_email_channel():

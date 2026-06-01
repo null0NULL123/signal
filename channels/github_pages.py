@@ -36,8 +36,6 @@ class GitHubPagesChannel(BaseChannel):
             filepath = digests_dir / f"{date_str}.html"
             filepath.write_text(self._render_digest(digest, date_str), encoding="utf-8")
             log.info(f"Saved digest page to {filepath}")
-
-            self._update_index(digests_dir)
             return True
         except Exception as e:
             log.error(f"GitHub Pages save failed: {e}")
@@ -45,6 +43,8 @@ class GitHubPagesChannel(BaseChannel):
 
     def _render_digest(self, digest: Digest, date_str: str) -> str:
         body = self._md_to_html(digest.content)
+        meta = f'<div class="article-meta">{date_str} &middot; {LOCALE["email_ai_tag"]}</div>'
+        body = re.sub(r"(</h1>)", r"\1\n    " + meta, body, count=1)
         return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -53,15 +53,18 @@ class GitHubPagesChannel(BaseChannel):
   <title>Sift - {date_str}</title>
   <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Sift</h1>
-      <p class="date">{date_str} | {LOCALE['email_ai_tag']}</p>
-      <nav><a href="../index.html">{LOCALE['pages_back']}</a></nav>
-    </header>
+<body class="article-page">
+  <div class="article-header">
+    <div class="container article-header-inner">
+      <a href="../index.html" class="logo">Sift</a>
+      <a href="../index.html" class="back-link">&larr; {LOCALE['pages_back']}</a>
+    </div>
+  </div>
+  <div class="article-container">
     <article>{body}</article>
-    <footer><p>{LOCALE['pages_footer']}</p></footer>
+    <div class="article-footer">
+      <a href="../index.html">&larr; {LOCALE['pages_back']}</a>
+    </div>
   </div>
 </body>
 </html>"""

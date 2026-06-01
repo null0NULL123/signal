@@ -4,4 +4,6 @@ __pycache__/
 *.pyc
 .venv/
 knowledge/*.db
+knowledge/*.db-shm
+knowledge/*.db-wal
 workspaces/

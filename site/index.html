@@ -3,25 +3,218 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sift - Sift 周报</title>
+  <title>Sift - 从噪音中提取信号</title>
+  <meta name="description" content="自动从你关注的信息源收集内容，用 AI 生成结构化摘要，投递到你常用的平台。">
+  <meta property="og:title" content="Sift - 从噪音中提取信号">
+  <meta property="og:description" content="AI 驱动的信息聚合与摘要工具。多源抓取、智能摘要、自动投递。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="badge">AI-Powered Information Aggregator</div>
       <h1>Sift</h1>
-      <p class="subtitle">从噪音中提取信号</p>
-      <p class="description">每周自动从高质量信息源抓取内容，生成精炼摘要。</p>
-    </header>
-    <main>
-      <h2>历史周报</h2>
-      <ul class="digest-list">
-    <li><a href="digests/2026-06-01.html">2026-06-01</a></li>
-    <li><a href="digests/2026-05-31.html">2026-05-31</a></li>
-    <li><a href="digests/2026-05-30.html">2026-05-30</a></li>
-      </ul>
-    </main>
-    <footer><p>由 Sift 自动生成 | <a href="https://github.com/null0NULL123/sift">GitHub</a></p></footer>
-  </div>
+      <p class="tagline">从噪音中提取信号</p>
+      <p class="hero-desc">自动从你关注的信息源收集内容，用 AI 生成结构化摘要，<br>投递到你常用的平台。</p>
+      <div class="hero-actions">
+        <a href="digests/2026-06-01.html" class="btn btn-primary">查看最新周报</a>
+        <a href="https://github.com/null0NULL123/sift" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="pain-points">
+    <div class="container">
+      <p class="section-eyebrow">问题</p>
+      <h2>信息过载时代，你是否也有这些困扰？</h2>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">&#x1F4F0;</div>
+          <h3>信息源分散</h3>
+          <p>博客、论文、新闻、社交媒体……每天十几个站点来回切换</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">&#x1F30D;</div>
+          <h3>语言障碍</h3>
+          <p>高质量内容多为英文，阅读速度慢，翻译工具打断阅读流</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">&#x23F0;</div>
+          <h3>时间有限</h3>
+          <p>每周花数小时浏览，仍然错过关键更新</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <p class="section-eyebrow">能力</p>
+      <h2>四个核心能力，覆盖信息处理全链路</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="3"/></svg>
+          </div>
+          <h3>多源聚合</h3>
+          <p>RSS、GitHub Trending、Reddit、Hacker News、自定义 API……统一抓取，去重归档</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>AI 摘要</h3>
+          <p>大模型驱动，自动提取关键信息，生成结构化摘要，支持中英双语</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+          <h3>自动投递</h3>
+          <p>邮件、Slack、飞书、Webhook……生成即推送，无需手动操作</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h3>本地优先</h3>
+          <p>数据存储在本地 SQLite，隐私可控，Docker 一键部署</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow -->
+  <section class="workflow">
+    <div class="container">
+      <p class="section-eyebrow">工作流</p>
+      <h2>从信息源到你的屏幕，全自动</h2>
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div class="flow-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+          </div>
+          <div class="flow-label">Sources</div>
+          <div class="flow-desc">RSS · GitHub · Reddit<br>Hacker News · 自定义 API</div>
+        </div>
+        <div class="flow-arrow">
+          <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32M26 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="flow-label">Pipeline</div>
+          <div class="flow-desc">抓取 · 去重 · AI 摘要<br>知识积累 · 反馈优化</div>
+        </div>
+        <div class="flow-arrow">
+          <svg width="40" height="24" viewBox="0 0 40 24"><path d="M0 12h32M26 6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="flow-label">Channels</div>
+          <div class="flow-desc">邮件 · Slack · 飞书<br>Webhook · HTML 周报</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Digests -->
+  <section class="digests">
+    <div class="container">
+      <p class="section-eyebrow">周报</p>
+      <h2>最新生成的摘要</h2>
+      <div class="digest-grid">
+        <a href="digests/2026-06-01.html" class="digest-card">
+          <div class="digest-date">2026-06-01</div>
+          <div class="digest-title">技术前沿周报</div>
+          <div class="digest-tags">
+            <span>AI 商业化</span><span>智能体安全</span><span>开发者生态</span>
+          </div>
+        </a>
+        <a href="digests/2026-05-31.html" class="digest-card">
+          <div class="digest-date">2026-05-31</div>
+          <div class="digest-title">技术前沿周报</div>
+          <div class="digest-tags">
+            <span>行业动态</span><span>技术趋势</span>
+          </div>
+        </a>
+        <a href="digests/2026-05-30.html" class="digest-card">
+          <div class="digest-date">2026-05-30</div>
+          <div class="digest-title">技术前沿周报</div>
+          <div class="digest-tags">
+            <span>行业动态</span><span>技术趋势</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Highlights -->
+  <section class="highlights">
+    <div class="container">
+      <p class="section-eyebrow">设计原则</p>
+      <h2>小而精，不做大而全</h2>
+      <div class="highlight-grid">
+        <div class="highlight-item">
+          <div class="highlight-number">01</div>
+          <h3>解耦架构</h3>
+          <p>数据源、处理逻辑、投递渠道完全独立，按需扩展，互不影响</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">02</div>
+          <h3>隐私优先</h3>
+          <p>数据存储在本地 SQLite，不依赖第三方数据库，完全掌控</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">03</div>
+          <h3>一键部署</h3>
+          <p>Docker / Podman 容器化，GitHub Actions 自动化，5 分钟跑起来</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">04</div>
+          <h3>知识积累</h3>
+          <p>向量嵌入 + 关键词双通道召回，越用越懂你的信息偏好</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>开始使用 Sift</h2>
+      <p>几分钟部署，从此不再错过重要信息</p>
+      <div class="hero-actions">
+        <a href="https://github.com/null0NULL123/sift" class="btn btn-primary">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">Sift</div>
+      <div class="footer-links">
+        <a href="https://github.com/null0NULL123/sift">GitHub</a>
+        <a href="https://github.com/null0NULL123/sift/blob/main/docs/zh/architecture.md">架构文档</a>
+        <a href="https://github.com/null0NULL123/sift/blob/main/docs/zh/deployment.md">部署指南</a>
+      </div>
+      <div class="footer-copy">MIT License &middot; Built with AI</div>
+    </div>
+  </footer>
+
 </body>
 </html>
