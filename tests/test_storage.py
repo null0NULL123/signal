@@ -25,7 +25,7 @@ def test_memory_db():
     tables = {r[0] for r in db.execute(
         "SELECT name FROM sqlite_master WHERE type='table'"
     ).fetchall()}
-    assert {"articles", "topics", "digests", "article_feedback"} <= tables
+    assert {"articles", "digests", "article_feedback"} <= tables
 
     # Empty state
     assert ks.get_articles(weeks=1) == []
@@ -82,12 +82,38 @@ def test_keyword_search():
 
 def test_topics():
     with temp_db() as ks:
-        ks.save_topics(["AI", "LLM", "ai"])
+        # Tags come from articles, not a separate topics table
+        e1 = make_entry("Article A")
+        e1.tags = ["AI", "LLM"]
+        e2 = make_entry("Article B")
+        e2.tags = ["AI", "Rust"]
+        feed = make_feed([e1, e2])
+        ks.save_articles([feed])
+
         trends = ks.get_topic_trends(months=1)
-        assert len(trends) >= 1
+        assert len(trends) >= 2
         ai_topic = next((t for t in trends if t["topic"] == "ai"), None)
         assert ai_topic is not None
         assert ai_topic["total"] == 2
+
+
+def test_all_tags():
+    with temp_db() as ks:
+        assert ks.get_all_tags() == []
+
+        e1 = make_entry("Article A")
+        e1.tags = ["AI", "LLM"]
+        e2 = make_entry("Article B")
+        e2.tags = ["AI", "Rust"]
+        feed = make_feed([e1, e2])
+        ks.save_articles([feed])
+
+        tags = ks.get_all_tags()
+        assert len(tags) == 3
+        ai_tag = next(t for t in tags if t["tag"] == "ai")
+        assert ai_tag["count"] == 2
+        rust_tag = next(t for t in tags if t["tag"] == "rust")
+        assert rust_tag["count"] == 1
 
 
 def test_digest():
@@ -106,7 +132,13 @@ def test_trend_context():
     with temp_db() as ks:
         assert ks.generate_trend_context() == ""
 
-        ks.save_topics(["AI", "LLM", "Rust"])
+        e1 = make_entry("Article A")
+        e1.tags = ["AI", "LLM"]
+        e2 = make_entry("Article B")
+        e2.tags = ["AI", "Rust"]
+        feed = make_feed([e1, e2])
+        ks.save_articles([feed])
+
         ctx = ks.generate_trend_context()
         assert LOCALE["trend_rising"] in ctx or LOCALE["trend_frequent"] in ctx
 
@@ -166,6 +198,7 @@ TESTS = [
     ("batch exist", test_batch_exist),
     ("keyword search", test_keyword_search),
     ("topics", test_topics),
+    ("all tags", test_all_tags),
     ("digest", test_digest),
     ("trend context", test_trend_context),
     ("related context", test_related_context),

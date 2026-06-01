@@ -29,6 +29,7 @@ def test_file_channel():
 
         files = list(tmpdir.glob("*.md"))
         assert len(files) == 1
+        assert "sift-" in files[0].name
         assert files[0].read_text() == "# Test\nHello world"
 
 
@@ -49,6 +50,7 @@ def test_github_pages_channel():
 
             index = tmpdir / "index.html"
             assert index.exists()
+            assert "Sift" in index.read_text()
 
 
 def test_email_channel():
@@ -63,6 +65,7 @@ def test_email_channel():
         d = Digest(content="# Digest Title\n\n- Article 1\n- Article 2\n\n---\nFooter")
         msg = ch._build_message(d.content)
 
+        assert "Sift" in msg["Subject"]
         assert msg["From"] == "test@example.com"
         assert msg["To"] == "receiver@example.com"
 

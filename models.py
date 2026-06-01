@@ -76,6 +76,7 @@ class ArticleRecord:
     source: str = ""
     published: str = ""
     summary: str = ""
+    llm_summary: str = ""
     tags: list[str] = field(default_factory=list)
     week: str = ""
     created_at: str | None = None

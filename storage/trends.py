@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import sqlite3
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 
 from config import (
@@ -27,21 +29,34 @@ class TrendStorage(BaseStorage):
     """Topic trend analysis and related article discovery."""
 
     # ------------------------------------------------------------------
-    # Topic trends
+    # Topic trends (aggregated from articles.tags)
     # ------------------------------------------------------------------
 
     def get_topic_trends(self, months: int = 3) -> list[dict]:
         db = self._get_db()
         cutoff = self._week_id(datetime.now(timezone.utc) - timedelta(days=months * 30))
-        rows = db.execute("SELECT topic, week, count FROM topics WHERE week >= ? ORDER BY week ASC, count DESC", (cutoff,)).fetchall()
+        rows = db.execute(
+            "SELECT tags, week FROM articles WHERE week >= ? AND tags != '[]'",
+            (cutoff,),
+        ).fetchall()
 
-        trends: dict[str, dict] = {}
-        for topic, week, count in rows:
-            if topic not in trends:
-                trends[topic] = {"topic": topic, "weeks": [], "total": 0}
-            trends[topic]["weeks"].append({"week": week, "count": count})
-            trends[topic]["total"] += count
-        return sorted(trends.values(), key=lambda x: x["total"], reverse=True)
+        topic_weeks: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+        for tags_json, week in rows:
+            try:
+                tags = json.loads(tags_json)
+            except (json.JSONDecodeError, TypeError):
+                continue
+            for tag in tags:
+                tag_lower = tag.strip().lower()
+                if tag_lower:
+                    topic_weeks[tag_lower][week] += 1
+
+        trends = []
+        for topic, weeks in topic_weeks.items():
+            week_list = [{"week": w, "count": c} for w, c in sorted(weeks.items())]
+            total = sum(c for c in weeks.values())
+            trends.append({"topic": topic, "weeks": week_list, "total": total})
+        return sorted(trends, key=lambda x: x["total"], reverse=True)
 
     def get_rising_topics(self) -> list[dict]:
         trends = self.get_topic_trends(months=2)

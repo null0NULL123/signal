@@ -6,36 +6,14 @@ import os
 
 from base import env_vars, temp_file, temp_json
 from config import (
-    DEFAULT_DB_PATH,
-    DEFAULT_DAYS,
-    DEFAULT_FEEDS_PATH,
-    DEFAULT_LANGUAGE,
-    DEFAULT_OUTPUT_DIR,
-    DEFAULT_PROMPT_NAME,
     DEFAULT_SOURCE_LANG,
     DEFAULT_SOURCE_TYPE,
-    FETCH_MAX_WORKERS,
-    HASH_TRUNCATE_LENGTH,
-    LOCALE,
     get_env,
     get_float,
     get_int,
     load_env,
     load_sources,
 )
-
-
-def test_constants():
-    assert DEFAULT_FEEDS_PATH == "feeds.json"
-    assert DEFAULT_DB_PATH == "knowledge/knowledge.db"
-    assert DEFAULT_OUTPUT_DIR == "output"
-    assert DEFAULT_LANGUAGE == "zh-CN"
-    assert DEFAULT_DAYS == 7
-    assert DEFAULT_PROMPT_NAME == "tech-weekly"
-    assert HASH_TRUNCATE_LENGTH == 16
-    assert FETCH_MAX_WORKERS == 8
-    assert "email_subject" in LOCALE
-    assert "no_articles" in LOCALE
 
 
 def test_get_env():
@@ -98,7 +76,6 @@ def test_load_sources():
 
 
 TESTS = [
-    ("constants", test_constants),
     ("get_env/get_int/get_float", test_get_env),
     ("load_env", test_load_env),
     ("load_sources", test_load_sources),

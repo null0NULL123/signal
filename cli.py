@@ -198,21 +198,22 @@ def cmd_space_delete(args: argparse.Namespace) -> None:
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="sift",
-        description="Sift - RSS weekly digest with AI summary and email delivery",
+        description="Sift - RSS weekly digest with summary and email delivery",
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable debug logging")
-    parser.add_argument("--workspace", "-w", default=ws.DEFAULT_WORKSPACE, help=f"Workspace name (default: {ws.DEFAULT_WORKSPACE})")
     parser.add_argument("--feeds", default=None, help=f"Path to feeds.json (default: {DEFAULT_FEEDS_PATH})")
 
     sub = parser.add_subparsers(dest="command", help="Available commands")
 
     p_run = sub.add_parser("run", help="Full pipeline: fetch + summarize + deliver")
+    p_run.add_argument("--workspace", "-w", default=ws.DEFAULT_WORKSPACE, help=f"Workspace name (default: {ws.DEFAULT_WORKSPACE})")
     p_run.add_argument("--days", type=int, default=None, help="Days of articles to fetch")
     p_run.add_argument("--language", default=None, help="Target language for digest")
     p_run.add_argument("--profile", default=None, help=f"Prompt profile name (default: {DEFAULT_PROMPT_NAME})")
     p_run.add_argument("--email", action="store_true", help="Enable email delivery (requires SMTP config in .env)")
 
     p_fetch = sub.add_parser("fetch", help="Fetch and store articles only")
+    p_fetch.add_argument("--workspace", "-w", default=ws.DEFAULT_WORKSPACE, help=f"Workspace name (default: {ws.DEFAULT_WORKSPACE})")
     p_fetch.add_argument("--days", type=int, default=None, help="Days of articles to fetch")
 
     sub.add_parser("discover", help="Discover sub-sources from configured feeds")

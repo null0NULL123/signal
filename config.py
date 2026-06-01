@@ -72,10 +72,10 @@ MIN_KEYWORD_LENGTH = 3
 # Locale strings
 LOCALE = {
     "email_subject": "Sift 周报",
-    "email_footer": "由 Sift 自动生成 | Powered by AI",
-    "email_ai_tag": "AI 自动摘要",
+    "email_footer": "由 Sift 自动生成",
+    "email_ai_tag": "自动摘要",
     "pages_subtitle": "从噪音中提取信号",
-    "pages_description": "每周自动从高质量信息源抓取内容，用 AI 生成精炼摘要。",
+    "pages_description": "每周自动从高质量信息源抓取内容，生成精炼摘要。",
     "pages_footer": "由 Sift 自动生成",
     "pages_history_title": "历史周报",
     "pages_back": "← 返回目录",

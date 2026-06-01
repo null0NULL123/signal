@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from datetime import datetime, timedelta, timezone
 
@@ -81,3 +82,27 @@ class DashboardStorage(BaseStorage):
             (cutoff,),
         ).fetchall()
         return [{"source": r[0], "count": r[1]} for r in rows]
+
+    # ------------------------------------------------------------------
+    # Tags for preference candidates
+    # ------------------------------------------------------------------
+
+    def get_all_tags(self, limit: int = 30) -> list[dict]:
+        """Get unique tags from articles, ranked by frequency."""
+        db = self._get_db()
+        rows = db.execute("SELECT tags FROM articles WHERE tags != '[]'").fetchall()
+        tag_counts: dict[str, int] = {}
+        for (tags_json,) in rows:
+            try:
+                tags = json.loads(tags_json)
+            except (json.JSONDecodeError, TypeError):
+                continue
+            for tag in tags:
+                tag_lower = tag.strip().lower()
+                if tag_lower:
+                    tag_counts[tag_lower] = tag_counts.get(tag_lower, 0) + 1
+        return sorted(
+            [{"tag": t, "count": c} for t, c in tag_counts.items()],
+            key=lambda x: x["count"],
+            reverse=True,
+        )[:limit]

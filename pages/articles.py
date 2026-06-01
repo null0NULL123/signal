@@ -14,7 +14,7 @@ from config import load_env
 from storage.knowledge import KnowledgeStorage
 import workspace as ws
 
-st.set_page_config(page_title="文章 - Sift", page_icon="📄")
+st.set_page_config(page_title="文章 - Sift", page_icon=":material/filter_list:")
 
 
 def init_session():
@@ -34,7 +34,7 @@ def get_storage(workspace: str):
 def render_workspace_selector():
     workspaces = ws.list_workspaces()
     with st.sidebar:
-        st.header("🗂️ 工作区")
+        st.header("工作区")
         current_idx = workspaces.index(st.session_state.workspace) if st.session_state.workspace in workspaces else 0
         selected = st.selectbox("选择工作区", workspaces, index=current_idx, label_visibility="collapsed")
         if selected != st.session_state.workspace:
@@ -47,16 +47,20 @@ def render_article_card(article, storage: KnowledgeStorage):
         st.markdown(f"**[{article.title}]({article.link})**")
         meta_parts = []
         if article.source:
-            meta_parts.append(f"📡 {article.source}")
+            meta_parts.append(article.source)
         if article.week:
-            meta_parts.append(f"📅 {article.week}")
+            meta_parts.append(article.week)
         if article.published:
-            meta_parts.append(f"🕐 {article.published[:10]}")
+            meta_parts.append(article.published[:10])
         if meta_parts:
             st.caption(" | ".join(meta_parts))
-        if article.summary:
-            clean = re.sub(r"<[^>]+>", "", article.summary)
+        # Show LLM summary if available, otherwise show original summary
+        summary_text = article.llm_summary or article.summary
+        if summary_text:
+            clean = re.sub(r"<[^>]+>", "", summary_text)
             st.write(clean[:300] + ("..." if len(clean) > 300 else ""))
+        if article.llm_summary:
+            st.caption("AI 摘要")
         if article.tags:
             st.write(" ".join(f"`{t}`" for t in article.tags))
 
@@ -67,7 +71,7 @@ def render_article_card(article, storage: KnowledgeStorage):
         with col1:
             like_active = "like" in feedback_types
             if st.button(
-                "👍" if like_active else "👍",
+                "Like" if like_active else "Like",
                 key=f"like_{article.id}",
                 type="primary" if like_active else "secondary",
                 use_container_width=True,
@@ -78,7 +82,7 @@ def render_article_card(article, storage: KnowledgeStorage):
         with col2:
             dislike_active = "dislike" in feedback_types
             if st.button(
-                "👎" if dislike_active else "👎",
+                "Dislike" if dislike_active else "Dislike",
                 key=f"dislike_{article.id}",
                 type="primary" if dislike_active else "secondary",
                 use_container_width=True,
@@ -89,7 +93,7 @@ def render_article_card(article, storage: KnowledgeStorage):
         with col3:
             bookmark_active = "bookmark" in feedback_types
             if st.button(
-                "⭐" if bookmark_active else "⭐",
+                "Save" if bookmark_active else "Save",
                 key=f"bookmark_{article.id}",
                 type="primary" if bookmark_active else "secondary",
                 use_container_width=True,
@@ -102,7 +106,7 @@ def main():
     init_session()
     render_workspace_selector()
 
-    st.title("📄 文章浏览")
+    st.title("文章浏览")
     st.caption(f"工作区：{st.session_state.workspace}")
 
     storage = get_storage(st.session_state.workspace)
@@ -115,21 +119,32 @@ def main():
         keyword = st.text_input("关键词搜索")
 
         st.divider()
+        st.header("显示模式")
+        view_mode = st.radio(
+            "文章类型",
+            ["全部", "精选"],
+            index=0,
+            label_visibility="collapsed",
+        )
+
+        st.divider()
         st.header("反馈筛选")
         feedback_filter = st.radio(
             "显示文章",
-            ["全部", "👍 喜欢", "👎 不喜欢", "⭐ 收藏"],
+            ["全部", "喜欢", "不喜欢", "收藏"],
             index=0,
         )
 
     # Get articles based on filter
-    if feedback_filter == "全部":
+    if view_mode == "精选":
+        articles = storage.get_selected_articles(weeks=weeks)
+    elif feedback_filter == "全部":
         articles = storage.get_articles(weeks=weeks)
-    elif feedback_filter == "👍 喜欢":
+    elif feedback_filter == "喜欢":
         articles = storage.get_feedback_articles("like")
-    elif feedback_filter == "👎 不喜欢":
+    elif feedback_filter == "不喜欢":
         articles = storage.get_feedback_articles("dislike")
-    else:  # ⭐ 收藏
+    else:  # 收藏
         articles = storage.get_feedback_articles("bookmark")
 
     # Apply keyword filter

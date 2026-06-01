@@ -56,12 +56,12 @@ class GitHubPagesChannel(BaseChannel):
 <body>
   <div class="container">
     <header>
-      <h1>📡 Sift</h1>
+      <h1>Sift</h1>
       <p class="date">{date_str} | {LOCALE['email_ai_tag']}</p>
       <nav><a href="../index.html">{LOCALE['pages_back']}</a></nav>
     </header>
     <article>{body}</article>
-    <footer><p>{LOCALE['pages_footer']} | Powered by AI</p></footer>
+    <footer><p>{LOCALE['pages_footer']}</p></footer>
   </div>
 </body>
 </html>"""
@@ -83,7 +83,7 @@ class GitHubPagesChannel(BaseChannel):
 <body>
   <div class="container">
     <header>
-      <h1>📡 Sift</h1>
+      <h1>Sift</h1>
       <p class="subtitle">{LOCALE['pages_subtitle']}</p>
       <p class="description">{LOCALE['pages_description']}</p>
     </header>

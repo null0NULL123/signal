@@ -94,10 +94,14 @@ class Pipeline:
             if parts:
                 log.info(f"Injecting {len(parts)} context block(s) into summary")
 
-            log.info("Generating AI summary...")
+            log.info("Generating summary...")
             digest = self.summarize_processor.process(
                 results, language=self.language, trend_context="\n\n".join(parts)
             )
+
+            if not digest:
+                log.warning("Summarizer returned no content, skipping delivery")
+                return None
 
             for channel in self.channels:
                 log.info(f"Delivering via {channel.name}...")
@@ -107,6 +111,9 @@ class Pipeline:
                     log.error(f"Channel {channel.name} failed: {e}")
 
             self.storage.save_digest(digest)
+
+            # Extract LLM summaries from digest and update articles
+            self._update_article_llm_summaries(digest, results)
 
             # Clean up old embeddings to keep DB size manageable
             cleaned = self.storage.cleanup_old_embeddings()
@@ -138,3 +145,43 @@ class Pipeline:
                     log.error(f"  {cfg.name}: EXCEPTION - {exc}")
                     results.append(FeedResult(config=cfg, error=str(exc)))
         return results
+
+    def _update_article_llm_summaries(self, digest: Digest, results: list[FeedResult]) -> None:
+        """Parse digest content and update article LLM summaries.
+
+        Matches articles by link (from [原文链接](URL)) rather than title,
+        since LLM-generated titles may differ from original article titles.
+        """
+        import re
+
+        content = digest.content
+        updated = 0
+
+        # Split by article sections: each starts with **Title** and ends before the next **Title** or end
+        # Pattern: **title** [source]\nsummary...\n[原文链接](URL)
+        article_pattern = re.compile(
+            r"\*\*(.+?)\*\*.*?\n(.*?)(?=\n\*\*|\n## |\Z)", re.DOTALL
+        )
+
+        for match in article_pattern.finditer(content):
+            _title = match.group(1).strip()
+            body = match.group(2).strip()
+
+            # Extract link from [原文链接](URL)
+            link_match = re.search(r"\[原文链接\]\((https?://[^\)]+)\)", body)
+            if not link_match:
+                continue
+            link = link_match.group(1)
+
+            # Extract summary text (everything before the link)
+            summary_text = re.sub(r"\[原文链接\]\(https?://[^\)]+\)", "", body).strip()
+            # Remove [Source] tags
+            summary_text = re.sub(r"\[[^\]]+\]", "", summary_text).strip()
+
+            if summary_text and self.storage.update_llm_summary_by_link(link, summary_text):
+                updated += 1
+
+        if updated:
+            log.info(f"Updated LLM summaries for {updated} articles")
+        else:
+            log.debug("No article LLM summaries extracted from digest")

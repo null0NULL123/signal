@@ -13,11 +13,24 @@ from pathlib import Path
 
 DEFAULT_WORKSPACE = "default"
 WORKSPACE_DIR = "workspaces"
+DEFAULT_FEEDS = [
+    {"name": "GitHub Blog", "url": "https://github.blog/feed/", "lang": "en"},
+    {"name": "Meta Engineering", "url": "https://engineering.fb.com/feed/", "lang": "en"},
+    {"name": "Netflix Tech Blog", "url": "https://netflixtechblog.com/feed", "lang": "en"},
+    {"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "lang": "en"},
+    {"name": "The Pragmatic Engineer", "url": "https://newsletter.pragmaticengineer.com/feed", "lang": "en"},
+    {"name": "Hacker News", "url": "https://news.ycombinator.com/", "lang": "en", "source_type": "web", "metadata": {"selector": ".athing", "title_sel": ".titleline > a", "summary_sel": "", "link_sel": ".titleline > a"}},
+]
 
 
 def get_workspace_root() -> Path:
     """Get the root directory for all workspaces."""
-    return Path(os.environ.get("WORKSPACE_ROOT", WORKSPACE_DIR))
+    root = os.environ.get("WORKSPACE_ROOT", WORKSPACE_DIR)
+    path = Path(root)
+    if not path.is_absolute():
+        # Make relative to project root (where workspace.py lives)
+        path = Path(__file__).parent / path
+    return path
 
 
 def list_workspaces() -> list[str]:
@@ -35,7 +48,7 @@ def get_workspace_path(name: str) -> Path:
     """Get the path to a workspace directory."""
     if name == DEFAULT_WORKSPACE:
         # Default workspace uses project root (backward compatible)
-        return Path(".")
+        return Path(__file__).parent
     return get_workspace_root() / name
 
 
@@ -82,7 +95,7 @@ def create_workspace(name: str, feeds: list[dict] | None = None) -> Path:
     ws_path.mkdir(parents=True, exist_ok=True)
 
     # Create feeds.json
-    feeds_data = feeds or []
+    feeds_data = feeds if feeds is not None else DEFAULT_FEEDS
     (ws_path / "feeds.json").write_text(json.dumps(feeds_data, indent=2, ensure_ascii=False))
 
     return ws_path
@@ -101,6 +114,26 @@ def delete_workspace(name: str) -> None:
 
     ws_path = get_workspace_path(name)
     shutil.rmtree(ws_path)
+
+
+def rename_workspace(old_name: str, new_name: str) -> None:
+    """Rename a workspace.
+
+    Raises:
+        ValueError: If names are invalid, old doesn't exist, or new already exists.
+    """
+    if old_name == DEFAULT_WORKSPACE:
+        raise ValueError("Cannot rename the default workspace")
+    if not workspace_exists(old_name):
+        raise ValueError(f"Workspace '{old_name}' does not exist")
+    if workspace_exists(new_name):
+        raise ValueError(f"Workspace '{new_name}' already exists")
+    if not new_name or not new_name.replace("-", "").replace("_", "").isalnum():
+        raise ValueError(f"Invalid workspace name: {new_name}")
+
+    old_path = get_workspace_path(old_name)
+    new_path = get_workspace_path(new_name)
+    old_path.rename(new_path)
 
 
 def get_active_workspace() -> str:
