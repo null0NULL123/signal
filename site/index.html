@@ -13,18 +13,7 @@
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a href="#" class="nav-logo">Sift</a>
-      <div class="nav-links">
-        <a href="#features">功能</a>
-        <a href="#workflow">工作流</a>
-        <a href="#digests">周报</a>
-        <a href="https://github.com/null0NULL123/sift" class="btn btn-nav">GitHub</a>
-      </div>
-    </div>
-  </nav>
+  <div id="nav-include"></div>
 
   <!-- Hero -->
   <section class="hero">
@@ -86,111 +75,40 @@
     </div>
   </section>
 
-  <!-- Features (Tab Style) -->
-  <section class="features reveal" id="features">
+  <!-- Features Overview -->
+  <section class="features-overview reveal" id="features">
     <div class="container">
       <p class="section-tag">核心功能</p>
       <h2>覆盖信息处理全链路</h2>
-      <div class="feature-tabs">
-        <div class="tab-nav">
-          <button class="tab-btn active" data-tab="sources">多源聚合</button>
-          <button class="tab-btn" data-tab="ai">AI 摘要</button>
-          <button class="tab-btn" data-tab="deliver">自动投递</button>
-          <button class="tab-btn" data-tab="local">本地优先</button>
-        </div>
-        <div class="tab-panels">
-          <div class="tab-panel active" id="tab-sources">
-            <div class="tab-panel-inner">
-              <div class="tab-info">
-                <h3>统一抓取，去重归档</h3>
-                <p>支持 RSS、GitHub Trending、Reddit、Hacker News、自定义 API 等多种信息源，自动去重并归档到本地知识库。</p>
-                <ul class="tab-list">
-                  <li>RSS / Atom 订阅</li>
-                  <li>GitHub Trending</li>
-                  <li>Reddit 子版块</li>
-                  <li>Hacker News</li>
-                  <li>自定义 API 接入</li>
-                </ul>
-              </div>
-              <div class="tab-visual">
-                <div class="source-grid">
-                  <div class="source-item"><span>RSS</span></div>
-                  <div class="source-item"><span>GitHub</span></div>
-                  <div class="source-item"><span>Reddit</span></div>
-                  <div class="source-item"><span>HN</span></div>
-                  <div class="source-item"><span>API</span></div>
-                  <div class="source-item"><span>+</span></div>
-                </div>
-              </div>
-            </div>
+      <div class="overview-grid">
+        <a href="features.html#sources" class="overview-card">
+          <div class="overview-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="3"/></svg>
           </div>
-          <div class="tab-panel" id="tab-ai">
-            <div class="tab-panel-inner">
-              <div class="tab-info">
-                <h3>大模型驱动，结构化输出</h3>
-                <p>自动提取关键信息，生成分类摘要，支持中英双语。向量嵌入 + 关键词双通道召回，越用越懂你。</p>
-                <ul class="tab-list">
-                  <li>自动提取关键信息</li>
-                  <li>结构化分类摘要</li>
-                  <li>中英双语支持</li>
-                  <li>向量嵌入召回</li>
-                  <li>关键词匹配召回</li>
-                </ul>
-              </div>
-              <div class="tab-visual">
-                <div class="ai-demo">
-                  <div class="ai-input">15 篇文章</div>
-                  <div class="ai-arrow">→</div>
-                  <div class="ai-output">5 个分类摘要</div>
-                </div>
-              </div>
-            </div>
+          <h3>多源聚合</h3>
+          <p>RSS、GitHub、Reddit、HN、自定义 API 统一抓取</p>
+        </a>
+        <a href="features.html#ai" class="overview-card">
+          <div class="overview-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <div class="tab-panel" id="tab-deliver">
-            <div class="tab-panel-inner">
-              <div class="tab-info">
-                <h3>生成即推送，无需手动操作</h3>
-                <p>摘要生成后自动投递到你配置的渠道，支持邮件、Slack、飞书、Webhook 等多种方式。</p>
-                <ul class="tab-list">
-                  <li>邮件投递</li>
-                  <li>Slack 集成</li>
-                  <li>飞书机器人</li>
-                  <li>Webhook 回调</li>
-                  <li>HTML 静态页面</li>
-                </ul>
-              </div>
-              <div class="tab-visual">
-                <div class="channel-grid">
-                  <div class="channel-item"><span>📧</span><span>邮件</span></div>
-                  <div class="channel-item"><span>💬</span><span>Slack</span></div>
-                  <div class="channel-item"><span>🐦</span><span>飞书</span></div>
-                  <div class="channel-item"><span>🔗</span><span>Webhook</span></div>
-                </div>
-              </div>
-            </div>
+          <h3>AI 摘要</h3>
+          <p>大模型驱动，结构化输出，支持中英双语</p>
+        </a>
+        <a href="features.html#deliver" class="overview-card">
+          <div class="overview-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           </div>
-          <div class="tab-panel" id="tab-local">
-            <div class="tab-panel-inner">
-              <div class="tab-info">
-                <h3>数据完全掌控在自己手中</h3>
-                <p>所有数据存储在本地 SQLite，不依赖第三方数据库。Docker 一键部署，GitHub Actions 自动化运行。</p>
-                <ul class="tab-list">
-                  <li>SQLite 本地存储</li>
-                  <li>向量嵌入库 sqlite-vec</li>
-                  <li>Docker / Podman 部署</li>
-                  <li>GitHub Actions 自动化</li>
-                  <li>无第三方依赖</li>
-                </ul>
-              </div>
-              <div class="tab-visual">
-                <div class="local-demo">
-                  <div class="local-icon">🛡️</div>
-                  <div class="local-text">数据不出本机</div>
-                </div>
-              </div>
-            </div>
+          <h3>自动投递</h3>
+          <p>邮件、Slack、飞书、Webhook 自动生成即推送</p>
+        </a>
+        <a href="features.html#local" class="overview-card">
+          <div class="overview-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           </div>
-        </div>
+          <h3>本地优先</h3>
+          <p>SQLite 本地存储，Docker 一键部署，隐私可控</p>
+        </a>
       </div>
     </div>
   </section>
@@ -288,20 +206,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-inner">
-      <div class="footer-brand">Sift</div>
-      <div class="footer-links">
-        <a href="https://github.com/null0NULL123/sift">GitHub</a>
-        <a href="https://github.com/null0NULL123/sift/blob/main/docs/zh/architecture.md">架构文档</a>
-        <a href="https://github.com/null0NULL123/sift/blob/main/docs/zh/deployment.md">部署指南</a>
-      </div>
-      <div class="footer-copy">MIT License &middot; Built with AI</div>
-    </div>
-  </footer>
+  <div id="footer-include"></div>
 
   <script>
+    // Load partials
+    fetch('/partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch('/partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -311,20 +222,9 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // Sticky nav
-    const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Tab switching
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.tab;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + tab).classList.add('active');
-      });
+      const nav = document.querySelector('.nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
     });
   </script>
 

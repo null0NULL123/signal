@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>功能详情 - Sift</title>
+  <meta name="description" content="Sift 核心功能：多源聚合、AI 摘要、自动投递、本地优先。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="nav-include"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="section-tag">核心功能</p>
+      <h1>覆盖信息处理全链路</h1>
+      <p class="page-desc">从信息源抓取到最终投递，四个核心能力覆盖完整工作流。</p>
+    </div>
+  </section>
+
+  <!-- Features (Tab Style) -->
+  <section class="features">
+    <div class="container">
+      <div class="feature-tabs">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="sources">多源聚合</button>
+          <button class="tab-btn" data-tab="ai">AI 摘要</button>
+          <button class="tab-btn" data-tab="deliver">自动投递</button>
+          <button class="tab-btn" data-tab="local">本地优先</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" id="tab-sources">
+            <div class="tab-panel-inner">
+              <div class="tab-info">
+                <h3>统一抓取，去重归档</h3>
+                <p>支持 RSS、GitHub Trending、Reddit、Hacker News、自定义 API 等多种信息源，自动去重并归档到本地知识库。</p>
+                <ul class="tab-list">
+                  <li>RSS / Atom 订阅</li>
+                  <li>GitHub Trending</li>
+                  <li>Reddit 子版块</li>
+                  <li>Hacker News</li>
+                  <li>自定义 API 接入</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="source-grid">
+                  <div class="source-item"><span>RSS</span></div>
+                  <div class="source-item"><span>GitHub</span></div>
+                  <div class="source-item"><span>Reddit</span></div>
+                  <div class="source-item"><span>HN</span></div>
+                  <div class="source-item"><span>API</span></div>
+                  <div class="source-item dim"><span>更多…</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="tab-ai">
+            <div class="tab-panel-inner">
+              <div class="tab-info">
+                <h3>大模型驱动，结构化输出</h3>
+                <p>自动提取关键信息，生成分类摘要，支持中英双语。向量嵌入 + 关键词双通道召回，越用越懂你。</p>
+                <ul class="tab-list">
+                  <li>自动提取关键信息</li>
+                  <li>结构化分类摘要</li>
+                  <li>中英双语支持</li>
+                  <li>向量嵌入召回</li>
+                  <li>关键词匹配召回</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="ai-demo">
+                  <div class="ai-input">15 篇文章</div>
+                  <div class="ai-arrow">→</div>
+                  <div class="ai-output">5 个分类摘要</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="tab-deliver">
+            <div class="tab-panel-inner">
+              <div class="tab-info">
+                <h3>生成即推送，无需手动操作</h3>
+                <p>摘要生成后自动投递到你配置的渠道，支持邮件、Slack、飞书、Webhook 等多种方式。</p>
+                <ul class="tab-list">
+                  <li>邮件投递</li>
+                  <li>Slack 集成</li>
+                  <li>飞书机器人</li>
+                  <li>Webhook 回调</li>
+                  <li>HTML 静态页面</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="channel-grid">
+                  <div class="channel-item"><span>📧</span><span>邮件</span></div>
+                  <div class="channel-item"><span>💬</span><span>Slack</span></div>
+                  <div class="channel-item"><span>🐦</span><span>飞书</span></div>
+                  <div class="channel-item"><span>🔗</span><span>Webhook</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="tab-local">
+            <div class="tab-panel-inner">
+              <div class="tab-info">
+                <h3>数据完全掌控在自己手中</h3>
+                <p>所有数据存储在本地 SQLite，不依赖第三方数据库。Docker 一键部署，GitHub Actions 自动化运行。</p>
+                <ul class="tab-list">
+                  <li>SQLite 本地存储</li>
+                  <li>向量嵌入库 sqlite-vec</li>
+                  <li>Docker / Podman 部署</li>
+                  <li>GitHub Actions 自动化</li>
+                  <li>无第三方依赖</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="local-demo">
+                  <div class="local-icon">🛡️</div>
+                  <div class="local-text">数据不出本机</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>开始使用 Sift</h2>
+      <p>几分钟部署，从此不再错过重要信息</p>
+      <div class="hero-actions">
+        <a href="https://github.com/null0NULL123/sift" class="btn btn-primary">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-include"></div>
+
+  <script>
+    // Load partials
+    fetch('/partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch('/partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + tab).classList.add('active');
+      });
+    });
+
+    // Auto-select tab from URL hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      const targetBtn = document.querySelector(`[data-tab="${hash}"]`);
+      if (targetBtn) targetBtn.click();
+    }
+  </script>
+
+</body>
+</html>

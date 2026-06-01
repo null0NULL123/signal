@@ -54,18 +54,18 @@ class GitHubPagesChannel(BaseChannel):
   <link rel="stylesheet" href="../style.css">
 </head>
 <body class="article-page">
-  <div class="article-header">
-    <div class="container article-header-inner">
-      <a href="../index.html" class="logo">Sift</a>
-      <a href="../index.html" class="back-link">&larr; {LOCALE['pages_back']}</a>
-    </div>
-  </div>
+  <div id="nav-include"></div>
   <div class="article-container">
     <article>{body}</article>
     <div class="article-footer">
       <a href="../index.html">&larr; {LOCALE['pages_back']}</a>
     </div>
   </div>
+  <div id="footer-include"></div>
+  <script>
+    fetch('/partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch('/partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+  </script>
 </body>
 </html>"""
 

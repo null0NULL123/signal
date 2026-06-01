@@ -7,12 +7,7 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body class="article-page">
-  <div class="article-header">
-    <div class="container article-header-inner">
-      <a href="../index.html" class="logo">Sift</a>
-      <a href="../index.html" class="back-link">&larr; 返回首页</a>
-    </div>
-  </div>
+  <div id="nav-include"></div>
   <div class="article-container">
     <article><h1>中文技术周报</h1>
     <div class="article-meta">2026-05-31 &middot; AI 自动摘要</div>
@@ -92,5 +87,12 @@
       <a href="../index.html">&larr; 返回首页</a>
     </div>
   </div>
+
+  <div id="footer-include"></div>
+
+  <script>
+    fetch('/partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch('/partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+  </script>
 </body>
 </html>
