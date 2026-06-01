@@ -13,29 +13,59 @@
 </head>
 <body>
 
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">Sift</a>
+      <div class="nav-links">
+        <a href="#features">能力</a>
+        <a href="#workflow">工作流</a>
+        <a href="#digests">周报</a>
+        <a href="https://github.com/null0NULL123/sift" class="btn btn-sm">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="badge">AI-Powered Information Aggregator</div>
-      <h1>Sift</h1>
-      <p class="tagline">从噪音中提取信号</p>
-      <p class="hero-desc">自动从你关注的信息源收集内容，用 AI 生成结构化摘要，<br>投递到你常用的平台。</p>
+      <h1>每周省下 3 小时<br><span class="gradient-text">不再错过重要信息</span></h1>
+      <p class="hero-desc">自动从你关注的信息源收集内容，用 AI 生成结构化摘要，投递到你常用的平台。</p>
       <div class="hero-actions">
         <a href="digests/2026-06-01.html" class="btn btn-primary">查看最新周报</a>
-        <a href="https://github.com/null0NULL123/sift" class="btn btn-outline">GitHub</a>
+        <a href="https://github.com/null0NULL123/sift" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          Star on GitHub
+        </a>
       </div>
-    </div>
-    <div class="hero-scroll-hint">
-      <span></span>
+      <!-- Product Preview -->
+      <div class="hero-preview">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">Terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="t-prompt">$</span> <span class="t-cmd">sift run</span></div>
+            <div class="terminal-line t-dim">Fetching from 8 sources...</div>
+            <div class="terminal-line t-dim">Deduplicating 47 → 23 articles</div>
+            <div class="terminal-line t-dim">Generating AI summaries...</div>
+            <div class="terminal-line"><span class="t-success">✓</span> Digest generated: <span class="t-link">2026-06-01</span></div>
+            <div class="terminal-line"><span class="t-success">✓</span> Delivered to: email, slack</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Pain Points -->
-  <section class="pain-points">
+  <section class="pain-points reveal">
     <div class="container">
       <p class="section-eyebrow">问题</p>
-      <h2>信息过载时代，你是否也有这些困扰？</h2>
+      <h2>信息过载，你是否也有这些困扰？</h2>
       <div class="pain-grid">
         <div class="pain-card">
           <div class="pain-icon">&#x1F4F0;</div>
@@ -57,10 +87,10 @@
   </section>
 
   <!-- Features -->
-  <section class="features">
+  <section class="features reveal" id="features">
     <div class="container">
       <p class="section-eyebrow">能力</p>
-      <h2>四个核心能力，覆盖信息处理全链路</h2>
+      <h2>覆盖信息处理全链路</h2>
       <div class="feature-grid">
         <div class="feature-card">
           <div class="feature-icon">
@@ -95,7 +125,7 @@
   </section>
 
   <!-- Workflow -->
-  <section class="workflow">
+  <section class="workflow reveal" id="workflow">
     <div class="container">
       <p class="section-eyebrow">工作流</p>
       <h2>从信息源到你的屏幕，全自动</h2>
@@ -132,7 +162,7 @@
   </section>
 
   <!-- Latest Digests -->
-  <section class="digests">
+  <section class="digests reveal" id="digests">
     <div class="container">
       <p class="section-eyebrow">周报</p>
       <h2>最新生成的摘要</h2>
@@ -162,8 +192,8 @@
     </div>
   </section>
 
-  <!-- Tech Highlights -->
-  <section class="highlights">
+  <!-- Highlights -->
+  <section class="highlights reveal">
     <div class="container">
       <p class="section-eyebrow">设计原则</p>
       <h2>小而精，不做大而全</h2>
@@ -193,7 +223,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta">
+  <section class="cta reveal">
     <div class="container">
       <h2>开始使用 Sift</h2>
       <p>几分钟部署，从此不再错过重要信息</p>
@@ -215,6 +245,24 @@
       <div class="footer-copy">MIT License &middot; Built with AI</div>
     </div>
   </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Sticky nav
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
 
 </body>
 </html>
