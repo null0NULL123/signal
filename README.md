@@ -29,7 +29,7 @@ Sources ──▶ Pipeline ◀──▶ KnowledgeStorage ◀──▶ Channels
 
 所有组件围绕 KnowledgeStorage（knowledge.db）交互，Pipeline 负责抓取、去重、摘要、投递。
 
-→ [完整架构设计](docs/architecture.md)
+→ [完整架构设计](docs/zh/architecture.md)
 
 ## 快速开始
 
@@ -59,15 +59,15 @@ pip install -r requirements-ui.txt
 streamlit run app.py
 ```
 
-→ [部署指南（GitHub Actions / 容器 / Android / 配置详解）](docs/deployment.md)
+→ [部署指南（GitHub Actions / 容器 / Android / 配置详解）](docs/zh/deployment.md)
 
 ## 文档
 
 | 文档 | 内容 |
 |---|---|
-| [架构设计](docs/architecture.md) | 三层管道、反馈系统、知识积累、实现方案 |
-| [部署指南](docs/deployment.md) | GitHub Actions、本地运行、Android、配置、订阅源管理 |
-| [竞品对比](docs/competitive-analysis.md) | 与 RSSHub / Folo / ClawFeed 等项目的对比 |
+| [架构设计](docs/zh/architecture.md) | 三层管道、反馈系统、知识积累、实现方案 |
+| [部署指南](docs/zh/deployment.md) | GitHub Actions、本地运行、Android、配置、订阅源管理 |
+| [竞品对比](docs/zh/competitive-analysis.md) | 与 RSSHub / Folo / ClawFeed 等项目的对比 |
 
 ## Documentation (English)
 
