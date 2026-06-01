@@ -103,7 +103,7 @@ Web UI 提供两个页面 + 侧边栏：
 Termux 环境下可一键部署：
 
 ```bash
-git clone <repo> signal && cd sift
+git clone <repo> sift && cd sift
 bash setup.sh
 vi .env
 .venv/bin/python3 cli.py run

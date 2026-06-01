@@ -103,7 +103,7 @@ Web UI provides two pages + sidebar:
 One-click deployment under Termux environment:
 
 ```bash
-git clone <repo> signal && cd sift
+git clone <repo> sift && cd sift
 bash setup.sh
 vi .env
 .venv/bin/python3 cli.py run
