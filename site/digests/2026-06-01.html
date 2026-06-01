@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sift - 2026-06-01</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sift</h1>
+      <p class="date">2026-06-01 | 自动摘要</p>
+      <nav><a href="../index.html">← 返回目录</a></nav>
+    </header>
+    <article><h1>技术周报</h1>
+
+<h2>本周看点</h2>
+
+<p class='numbered'>1. <strong>AI 商业化进入新阶段</strong>：以 Anthropic 为代表，头部 AI 公司不仅收入飙升，更开始展现明确的“产品-市场契合度”（Product-Market Fit），但高昂的 AI 使用成本（“AI token 花费”）正引发企业内部的审视与优化。</p>
+<p class='numbered'>2. <strong>AI 安全与治理成为焦点</strong>：从微软 Copilot 到第三方插件，AI 代理（Agent）引发的数据泄露风险频发，同时开源项目面临由 AI 驱动的海量安全报告压力，凸显了在拥抱 AI 时，安全防护与伦理规范的滞后。</p>
+<p class='numbered'>3. <strong>技术社区主动适应 AI 时代</strong>：无论是 SQLite 为 AI 代理添加的 <code>AGENTS.md</code> 指南，还是开发者对过度依赖 AI 编码工具的反思，都表明技术生态正在从工具和心态两个层面，积极调整以应对 AI 深度融入开发流程的趋势。</p>
+
+<h2>AI 商业化与市场洞察</h2>
+
+<p><strong>Anthropic 年化收入突破 470 亿美元，呈现强劲增长</strong> [Simon Willison]</p>
+<p>Anthropic 在宣布获得 650 亿美元 H 轮融资的同时透露，其年化收入已超过 470 亿美元。Simon Willison 认为，这标志着 OpenAI 和 Anthropic 都已找到了清晰的“产品-市场契合度”，即其 AI 模型正被企业以可预测、高粘性的方式消费。</p>
+<p><a href="https://simonwillison.net/2026/May/29/anthropic/">原文链接</a></p>
+
+<p><strong>“也许解决方案是取消我的 AI 订阅”：开发者对 AI 编码工具的反思</strong> [Simon Willison]</p>
+<p>一篇引起广泛共鸣的文章指出，许多开发者借助 AI 工具（如 Claude）无意中启动了过多小项目。作者认为，AI 降低了启动项目的门槛，但也可能分散精力，关键在于工程判断力，而非盲目追求“由 AI 构建”的标签。</p>
+<p><a href="https://simonwillison.net/2026/May/31/the-solution-might-be-cancelling-my-ai-subscription/#atom-everything">原文链接</a></p>
+
+<p><strong>《The Pulse》：工程部门内削减 AI 开支的趋势初现</strong> [The Pragmatic Engineer]</p>
+<p>报道指出，越来越多的企业正在自上而下、自下而上地尝试优化 AI token 的花费。这反映了在初步的“AI 军备竞赛”后，企业开始更理性地评估 AI 工具的实际投资回报率（ROI）。</p>
+<p><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-a-trend-of-trying-to-cut">原文链接</a></p>
+
+<h2>AI 治理与安全</h2>
+
+<p><strong>Microsoft Copilot Cowork 被曝存在文件泄露漏洞</strong> [Simon Willison]</p>
+<p>安全研究人员发现，微软的 AI 代理产品 Copilot Cowork 在某些场景下可能允许攻击者窃取用户文件。这再次凸显了设计具有自主行动能力的 AI 系统时，防止数据泄露是核心挑战之一。</p>
+<p><a href="https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/#atom-everything">原文链接</a></p>
+
+<p><strong>“压力”：curl 项目因 AI 生成的安全报告不堪重负</strong> [Simon Willison]</p>
+<p>curl 作者 Daniel Stenberg 表示，由 AI 辅助生成的大量（尽管看似可信的）安全漏洞报告，使团队的审核压力达到了前所未有的水平，其速度是 2024 年的 4-5 倍。这暴露了当前安全研究工具和流程在 AI 时代的严重不适应。</p>
+<p><a href="https://simonwillison.net/2026/May/26/the-pressure/#atom-everything">原文链接</a></p>
+
+<p><strong>ChatGPT for Google Sheets 插件被发现存在数据窃取风险</strong> [Hacker News]</p>
+<p>安全公司 Prompt Armor 披露，一款流行的 Google Sheets 插件“ChatGPT for Google Sheets”可能被利用来窃取用户的整个工作簿数据。这警示了第三方 AI 集成工具带来的供应链安全风险。</p>
+<p><a href="https://www.promptarmor.com/resources/gpt-for-google-sheets-data-exfiltration">原文链接</a></p>
+
+<h2>AI 技术进展</h2>
+
+<p><strong>Meta 发布 SilverTorch：将“索引即模型”新范式用于推荐系统</strong> [Meta Engineering]</p>
+<p>Meta 提出了名为 SilverTorch 的推荐系统新架构，将所有检索组件统一为单一模型，实现了高达 23.7 倍的吞吐量提升和 20.9 倍的计算成本降低。这项突破展示了在特定领域，高度集成的 AI 模型可以带来颠覆性的效率革命。</p>
+<p><a href="https://engineering.fb.com/2026/05/26/ml-applications/silvertorch-index-as-model-new-retrieval-paradigm-recommendation-systems/">原文链接</a></p>
+
+<p><strong>Anthropic 发布 Claude Opus 4.8，定位为“适度但切实的改进”</strong> [Simon Willison]</p>
+<p>Anthropic 发布了新版模型 Claude Opus 4.8，并诚实指出这是基于前代模型的渐进式提升。这种务实的产品沟通方式，与其强劲的商业增长相结合，展现了头部 AI 公司在技术迭代上的成熟心态。</p>
+<p><a href="https://simonwillison.net/2026/May/28/claude-opus-4-8/#atom-everything">原文链接</a></p>
+
+<h2>开发者工具与生态</h2>
+
+<p><strong>SQLite 项目添加 <code>AGENTS.md</code> 文件，引导 AI 代理行为</strong> [Simon Willison]</p>
+<p>著名的数据库软件 SQLite 近日添加了 <code>AGENTS.md</code> 文件，这并非用于指导内部开发，而是为了规范和引导外部 AI 代理在处理其代码库时的行为，例如明确不接受无事先协议的 Pull Request。这是传统开源项目主动“驯化”AI 代理的典型范例。</p>
+<p><a href="https://simonwillison.net/2026/May/27/sqlite-agents/#atom-everything">原文链接</a></p>
+
+<p><strong>GitHub 新手指南：如何在 VS Code 中使用 Git 和 GitHub</strong> [GitHub Blog]</p>
+<p>这篇基础教程详细介绍了如何利用 VS Code 这一主流编辑器，无缝进行 Git 版本控制和与 GitHub 平台的交互，旨在降低开发者使用代码协作平台的入门门槛。</p>
+<p><a href="https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-git-and-github-in-vs-code/">原文链接</a></p>
+
+<p><strong>“2026 年软件工程就业市场现状”：AI 工程师热潮并未取代传统招聘</strong> [The Pragmatic Engineer]</p>
+<p>基于独家数据的深度分析显示，虽然“AI 工程师”职位增长迅猛，但它并未显著“取代”传统的软件工程师招聘。市场更需要的是能够将 AI 能力与工程实践相结合的复合型人才。</p>
+<p><a href="https://newsletter.pragmaticengineer.com/p/state-of-the-job-market-2026">原文链接</a></p></article>
+    <footer><p>由 Sift 自动生成</p></footer>
+  </div>
+</body>
+</html>
