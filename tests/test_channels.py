@@ -81,31 +81,27 @@ def test_email_channel():
 
 
 def _delete_test_email():
-    """Delete the most recent test email from receiver's inbox via IMAP."""
+    """Delete all test emails from receiver's inbox via IMAP."""
     receiver = os.environ.get("SMTP_RECEIVER", "")
     auth_code = os.environ.get("SMTP_AUTH_CODE", "")
     imap_server = os.environ.get("IMAP_SERVER", "imap.qq.com")
     if not receiver or not auth_code:
-        print(f"[imap] skip: SMTP_RECEIVER or SMTP_AUTH_CODE not set")
         return
 
     try:
         time.sleep(3)  # wait for email to arrive
-        print(f"[imap] connecting to {imap_server} as {receiver}...")
         m = imaplib.IMAP4_SSL(imap_server)
         m.login(receiver, auth_code)
         m.select("INBOX")
         _, data = m.search(None, '(SUBJECT "Sift")')
         uids = data[0].split()
-        print(f"[imap] found {len(uids)} matching emails")
         if uids:
             for uid in uids:
                 m.store(uid, "+FLAGS", "\\Deleted")
             m.expunge()
-            print(f"[imap] deleted {len(uids)} emails")
         m.logout()
-    except Exception as e:
-        print(f"[imap] error: {type(e).__name__}: {e}")
+    except Exception:
+        pass  # best effort
 
 
 def test_email_send_real():
