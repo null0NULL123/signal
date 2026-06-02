@@ -1,0 +1,23 @@
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="" class="nav-logo" data-link>Sift</a>
+    <div class="nav-links">
+      <a href="index.html" data-link>首页</a>
+      <a href="features.html" data-link>功能</a>
+      <a href="workflow.html" data-link>工作流</a>
+      <a href="digests.html" data-link>周报</a>
+      <a href="https://github.com/null0NULL123/sift" class="btn btn-nav">GitHub</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var path = location.pathname;
+  var root = path.indexOf('/sift/') === 0 ? '/sift/' : '/';
+  document.querySelectorAll('[data-link]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(href) a.href = root + href;
+  });
+  window.__sift_root = root;
+})();
+</script>

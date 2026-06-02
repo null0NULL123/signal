@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sift - AI 信息聚合与摘要</title>
+  <meta name="description" content="自动从你关注的信息源收集内容，用 AI 生成结构化摘要，投递到你常用的平台。">
+  <meta property="og:title" content="Sift - AI 信息聚合与摘要">
+  <meta property="og:description" content="多源抓取、AI 摘要、自动投递。本地部署，隐私可控。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="nav-include"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">AI 驱动</div>
+        <h1>从噪音中<br>提取<span class="highlight">信号</span></h1>
+        <p class="hero-desc">自动从多个信息源收集内容，用 AI 生成结构化摘要，投递到你常用的平台。</p>
+        <div class="hero-actions">
+          <a href="digests/2026-06-01.html" class="btn btn-primary">查看最新周报</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">Terminal</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">sift run</span></div>
+            <div class="t-line t-dim">⠋ Fetching from 8 sources...</div>
+            <div class="t-line t-dim">✓ Deduplicating 47 → 23 articles</div>
+            <div class="t-line t-dim">⠋ Generating AI summaries...</div>
+            <div class="t-line t-dim">✓ Digest: 2026-06-01</div>
+            <div class="t-line"><span class="t-ok">✓</span> Delivered to: email, slack</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Nav -->
+  <section class="quick-nav">
+    <div class="container">
+      <div class="quick-grid">
+        <a href="features.html" class="quick-card">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>核心功能</h3>
+          <p>多源聚合、AI 摘要、自动投递、本地优先</p>
+          <span class="quick-link">查看详情 →</span>
+        </a>
+        <a href="workflow.html" class="quick-card">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+          </div>
+          <h3>工作流</h3>
+          <p>从信息源到你的屏幕，四步全自动</p>
+          <span class="quick-link">查看详情 →</span>
+        </a>
+        <a href="digests.html" class="quick-card">
+          <div class="quick-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>周报摘要</h3>
+          <p>查看 AI 自动生成的最新技术周报</p>
+          <span class="quick-link">查看详情 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-include"></div>
+
+  <script>
+    var root = location.pathname.indexOf("/sift/") === 0 ? "/sift/" : "/";
+    fetch(root + 'partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch(root + 'partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工作流 - Sift</title>
+  <meta name="description" content="Sift 四步自动化工作流：抓取、处理、投递、积累。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="nav-include"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="section-tag">工作流</p>
+      <h1>从信息源到你的屏幕，全自动</h1>
+      <p class="page-desc">四个步骤，端到端自动化，无需人工干预。</p>
+    </div>
+  </section>
+
+  <!-- Workflow Detail -->
+  <section class="workflow-detail">
+    <div class="container">
+
+      <div class="wf-item">
+        <div class="wf-left">
+          <div class="wf-num">01</div>
+          <div class="wf-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+          </div>
+        </div>
+        <div class="wf-content">
+          <h2>抓取</h2>
+          <p class="wf-desc">从配置的信息源自动抓取最新内容，支持多种源类型。</p>
+          <div class="wf-sources">
+            <span class="wf-tag">RSS / Atom</span>
+            <span class="wf-tag">GitHub Trending</span>
+            <span class="wf-tag">Reddit</span>
+            <span class="wf-tag">Hacker News</span>
+            <span class="wf-tag">自定义 API</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-divider"></div>
+
+      <div class="wf-item">
+        <div class="wf-left">
+          <div class="wf-num">02</div>
+          <div class="wf-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+        </div>
+        <div class="wf-content">
+          <h2>处理</h2>
+          <p class="wf-desc">去重、分类，用 AI 大模型生成结构化摘要。</p>
+          <div class="wf-sources">
+            <span class="wf-tag">智能去重</span>
+            <span class="wf-tag">内容分类</span>
+            <span class="wf-tag">AI 摘要生成</span>
+            <span class="wf-tag">中英双语</span>
+            <span class="wf-tag">向量嵌入</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-divider"></div>
+
+      <div class="wf-item">
+        <div class="wf-left">
+          <div class="wf-num">03</div>
+          <div class="wf-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </div>
+        </div>
+        <div class="wf-content">
+          <h2>投递</h2>
+          <p class="wf-desc">摘要生成后自动推送到你配置的渠道。</p>
+          <div class="wf-sources">
+            <span class="wf-tag">📧 邮件</span>
+            <span class="wf-tag">💬 Slack</span>
+            <span class="wf-tag">🐦 飞书</span>
+            <span class="wf-tag">🔗 Webhook</span>
+            <span class="wf-tag">📄 HTML 页面</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-divider"></div>
+
+      <div class="wf-item">
+        <div class="wf-left">
+          <div class="wf-num">04</div>
+          <div class="wf-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+        </div>
+        <div class="wf-content">
+          <h2>积累</h2>
+          <p class="wf-desc">所有内容归档到本地知识库，向量索引支持语义检索。</p>
+          <div class="wf-sources">
+            <span class="wf-tag">SQLite 存储</span>
+            <span class="wf-tag">向量索引</span>
+            <span class="wf-tag">关键词索引</span>
+            <span class="wf-tag">语义检索</span>
+            <span class="wf-tag">偏好学习</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-include"></div>
+
+  <script>
+    var root = location.pathname.indexOf("/sift/") === 0 ? "/sift/" : "/";
+    fetch(root + 'partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch(root + 'partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>

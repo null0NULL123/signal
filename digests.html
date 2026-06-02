@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>周报摘要 - Sift</title>
+  <meta name="description" content="Sift 自动生成的技术周报摘要，AI 驱动的信息聚合。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="nav-include"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="section-tag">周报</p>
+      <h1>AI 自动生成的摘要</h1>
+      <p class="page-desc">每周从多个信息源抓取内容，用 AI 生成结构化技术周报。</p>
+    </div>
+  </section>
+
+  <!-- Digest List -->
+  <section class="digest-list-section">
+    <div class="container">
+      <div class="digest-list">
+        <a href="digests/2026-06-01.html" class="digest-list-item">
+          <div class="digest-list-date">2026-06-01</div>
+          <div class="digest-list-body">
+            <div class="digest-list-title">技术前沿周报</div>
+            <div class="digest-list-tags">
+              <span>AI 商业化</span><span>智能体安全</span><span>开发者生态</span>
+            </div>
+          </div>
+          <div class="digest-list-arrow">→</div>
+        </a>
+        <a href="digests/2026-05-31.html" class="digest-list-item">
+          <div class="digest-list-date">2026-05-31</div>
+          <div class="digest-list-body">
+            <div class="digest-list-title">技术前沿周报</div>
+            <div class="digest-list-tags">
+              <span>行业动态</span><span>技术趋势</span>
+            </div>
+          </div>
+          <div class="digest-list-arrow">→</div>
+        </a>
+        <a href="digests/2026-05-30.html" class="digest-list-item">
+          <div class="digest-list-date">2026-05-30</div>
+          <div class="digest-list-body">
+            <div class="digest-list-title">技术前沿周报</div>
+            <div class="digest-list-tags">
+              <span>行业动态</span><span>技术趋势</span>
+            </div>
+          </div>
+          <div class="digest-list-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-include"></div>
+
+  <script>
+    var root = location.pathname.indexOf("/sift/") === 0 ? "/sift/" : "/";
+    fetch(root + 'partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch(root + 'partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sift - 2026-05-30</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="article-page">
+  <div id="nav-include"></div>
+  <div class="article-container">
+    <article><h1>本周技术周报</h1>
+    <div class="article-meta">2026-05-30 &middot; AI 自动摘要</div>
+
+<h2>本周看点</h2>
+<ul>
+<li><strong>AI 技术向基础设施与开发工具深度渗透</strong>：AI 不仅是应用，更在重塑软件构建的底层工具链（如高性能推理引擎、前端框架）。</li>
+<li><strong>开发工具追求轻量化与极致优化</strong>：从 Zig 重写构建系统到 SQLite 驱动工作流，开发者正寻求更简单、高效、可控的技术栈。</li>
+<li><strong>硬件创新与软件定义边界持续融合</strong>：量子计算取得物理突破，而 3D 打印等硬件创新也依赖于强大的开源软件支持。</li>
+</ul>
+
+<h2>AI 与基础设施</h2>
+<p><strong>Liquid AI 发布 8B-A1B MoE 模型，训练数据达 38T</strong> [Liquid AI]  </p>
+<p>Liquid AI 发布了其 LFM2-5-8B-A1B 模型，这是一个拥有 8B 总参数但每次推理仅激活 1B 的混合专家模型，并在 38T tokens 上进行了训练。这显示了高效 MoE 架构在可控算力下实现高性能的巨大潜力。 <a href="https://www.liquid.ai/blog/lfm2-5-8b-a1b">原文链接</a></p>
+
+<p><strong>Tiny-vLLM：用 C++/CUDA 打造的轻量高性能 LLM 推理引擎</strong> [Hacker News]  </p>
+<p>一个名为 tiny-vllm 的开源项目，旨在用 C++ 和 CUDA 从头构建一个高性能 LLM 推理引擎。这反映了社区对更轻量、更易掌控的推理基础设施的需求，可能为特定部署场景提供新选择。 <a href="https://github.com/jmaczan/tiny-vllm">原文链接</a></p>
+
+<p><strong>AI 是否正在重演前端的“迷失十年”？</strong> [MastroJS]  </p>
+<p>文章探讨了 AI 工具和框架的快速迭代是否会导致前端开发再次陷入技术栈繁杂、工具链过重、开发者疲于奔命的困境，引发了对技术发展健康度的深刻反思。 <a href="https://mastrojs.github.io/blog/2026-05-23-is-AI-causing-a-repeat-of-frontends-lost-decade/">原文链接</a></p>
+
+<h2>开发实践与工具</h2>
+<p><strong>Zig 语言完全重写其构建系统</strong> [Zig Language]  </p>
+<p>Zig 团队对其构建系统进行了彻底重写，旨在提供更强大、更一致的体验。这对于依赖 Zig 的开发者和项目至关重要，体现了该语言对开发者工具链的持续投入。 <a href="https://ziglang.org/devlog/2026/#2026-05-26">原文链接</a></p>
+
+<p><strong>SQLite 就足以构建持久化工作流</strong> [Obeli.sk]  </p>
+<p>文章论证了使用 SQLite 作为核心来构建 durable workflow（持久化工作流）系统的可行性。这挑战了分布式数据库的传统依赖，为中小规模或边缘场景提供了更简单、可靠的选择。 <a href="https://obeli.sk/blog/sqlite-is-all-you-need-for-durable-workflows/">原文链接</a></p>
+
+<p><strong>为 ZJIT 引入全新的寄存器分配器</strong> [Rails at Scale]  </p>
+<p>Rails 团队正在为其 JavaScript 运行时 ZJIT 开发一个新的寄存器分配器，这是 JIT 编译器性能优化的关键环节。此举旨在显著提升 Rails 应用中 JavaScript 的执行效率。 <a href="https://railsatscale.com/2026-05-27-a-new-register-allocator-for-zjit/">原文链接</a></p>
+
+<p><strong>Perry：直接使用 SWC 和 LLVM 将 TypeScript 编译为可执行文件</strong> [Perry TS]  </p>
+<p>该项目探索了将 TypeScript 直接通过 SWC 进行语法转换，再经 LLVM 编译为原生二进制文件的路径，旨在实现更快的启动时间和更简单的部署，是 TS 运行时生态的新探索。 <a href="https://www.perryts.com/">原文链接</a></p>
+
+<h2>硬件与物理创新</h2>
+<p><strong>世界首次：Imec 使用 High NA EUV 光刻技术制造量子点量子比特</strong> [Imec]  </p>
+<p>半导体研究中心 Imec 展示了使用下一代 High NA EUV 光刻技术制造量子点量子比特器件。这标志着前沿芯片制造工艺开始为量子计算硬件的生产铺平道路。 <a href="https://www.imec-int.com/en/press/world-first-imec-presents-quantum-dot-qubit-device-using-high-na-euv-lithography">原文链接</a></p>
+
+<p><strong>Prusa3D 开源 ColorMix：实现数十种颜色的 3D 打印</strong> [Prusa3D]  </p>
+<p>Prusa 推出了开源的 ColorMix 功能，使其 3D 打印机能够混合使用多种颜色的材料进行打印，大幅降低了多色打印的门槛，推动了消费级 3D 打印的创意实现。 <a href="https://blog.prusa3d.com/our-new-open-source-colormix-model-in-prusaslicer-and-easyprint_136079/">原文链接</a></p>
+
+<h2>开源与社区展示</h2>
+<p><strong>Show HN: Secluso – 端到端加密的开源家庭安防摄像头系统</strong> [GitHub]  </p>
+<p>一个开源的端到端加密家庭安防系统，强调隐私保护。在智能家居设备普遍收集数据的当下，这类项目为注重隐私的用户提供了重要的替代方案。 <a href="https://github.com/secluso/core">原文链接</a></p>
+
+<p><strong>Math-to-Manim：将数学公式转化为 Manim 动画</strong> [GitHub]  </p>
+<p>该项目旨在将数学描述或公式自动转换为 Manim 动画代码，能极大简化数学教育和科普内容中复杂动画的制作流程。 <a href="https://github.com/HarleyCoops/Math-To-Manim">原文链接</a></p>
+
+<h2>行业观察与思考</h2>
+<p><strong>如何保存软盘数据：一项日益紧迫的档案工作</strong> [IEEE Spectrum]  </p>
+<p>文章详细介绍了保存软盘数据的复杂技术和挑战，突出了数字遗产保存工作的紧迫性，以及模拟/老旧介质数据迁移的现实困难。 <a href="https://spectrum.ieee.org/floppy-disk-data-preservation-archives">原文链接</a></p>
+
+<p><strong>Shift 公司将免费提供家庭清洁服务，以训练未来的机器人</strong> [The Verge]  </p>
+<p>AI 数据初创公司 Shift 提出一个新颖模式：通过提供免费的人类家庭清洁服务，来收集高质量、多场景的机器人操作训练数据。这揭示了高质量具身智能数据获取的新思路。 <a href="https://www.theverge.com/ai-artificial-intelligence/939765/ai-training-data-startup-shift-free-cleaning">原文链接</a></p>
+
+<p><strong>GTA 6 开发团队宣布组建工会</strong> [Rockstar Intel]  </p>
+<p>Rockstar Games 的《GTA 6》开发团队宣布成立工会，这是游戏行业中具有里程碑意义的事件，反映了科技与创意产业从业者对工作条件和集体权益日益增长的诉求。 <a href="https://rockstarintel.com/gta-6-developers-announce-rockstar-games-union/">原文链接</a></p></article>
+    <div class="article-footer">
+      <a href="../index.html">&larr; 返回首页</a>
+    </div>
+  </div>
+
+  <div id="footer-include"></div>
+
+  <script>
+    var root = location.pathname.indexOf("/sift/") === 0 ? "/sift/" : "/";
+    fetch(root + 'partials/nav.html').then(r => r.text()).then(t => document.getElementById('nav-include').innerHTML = t);
+    fetch(root + 'partials/footer.html').then(r => r.text()).then(t => document.getElementById('footer-include').innerHTML = t);
+  </script>
+</body>
+</html>
