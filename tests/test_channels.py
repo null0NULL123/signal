@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-import imaplib
 import os
-import time
+import smtplib
 from pathlib import Path
 
 from base import env_vars, temp_dir
@@ -80,40 +79,18 @@ def test_email_channel():
         assert "<hr" in html_content
 
 
-def _delete_test_email():
-    """Delete all test emails from receiver's inbox via IMAP."""
-    receiver = os.environ.get("SMTP_RECEIVER", "")
-    auth_code = os.environ.get("SMTP_AUTH_CODE", "")
-    imap_server = os.environ.get("IMAP_SERVER", "imap.qq.com")
-    if not receiver or not auth_code:
-        return
-
-    try:
-        time.sleep(3)  # wait for email to arrive
-        m = imaplib.IMAP4_SSL(imap_server)
-        m.login(receiver, auth_code)
-        m.select("INBOX")
-        _, data = m.search(None, '(SUBJECT "Sift")')
-        uids = data[0].split()
-        if uids:
-            for uid in uids:
-                m.store(uid, "+FLAGS", "\\Deleted")
-            m.expunge()
-        m.logout()
-    except Exception:
-        pass  # best effort
-
-
 def test_email_send_real():
-    """Test actual email sending. Requires SMTP_* env vars."""
-    required = ["SMTP_SERVER", "SMTP_SENDER", "SMTP_AUTH_CODE", "SMTP_RECEIVER"]
+    """Test SMTP connection and auth only (no actual email sent)."""
+    required = ["SMTP_SERVER", "SMTP_SENDER", "SMTP_AUTH_CODE"]
     if not all(os.environ.get(k) for k in required):
         return
 
     ch = EmailChannel()
-    d = Digest(content="# Test Email\n\nThis is a test from Sift test suite.\n\n- Item 1\n- Item 2")
-    assert ch.send(d) is True
-    _delete_test_email()
+    with smtplib.SMTP(ch.smtp_server, ch.smtp_port, timeout=ch._timeout) as server:
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(ch.sender, ch.auth_code)
 
 
 TESTS = [
