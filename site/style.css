@@ -186,7 +186,7 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 32
 /* Article Pages */
 .article-page { min-height: 100vh; background: var(--bg); }
 .article-page .nav { border-bottom: 1px solid var(--border); }
-.article-container { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+.article-container { max-width: 720px; margin: 0 auto; padding: 80px 24px 80px; }
 article { color: var(--text); line-height: 1.8; }
 article h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.5px; }
 .article-meta { font-size: 13px; color: var(--text-3); margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); font-family: "SF Mono","Fira Code",monospace; }
