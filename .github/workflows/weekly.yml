@@ -43,5 +43,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sift-report
-          path: output/*.md
+          path: workspaces/default/output/*.md
           retention-days: 90

@@ -15,7 +15,6 @@ class SourceConfig:
 
     name: str
     url: str
-    lang: str = "en"        # default from config.DEFAULT_SOURCE_LANG
     source_type: str = "rss"  # default from config.DEFAULT_SOURCE_TYPE
     enabled: bool = True
     tags: list[str] = field(default_factory=list)

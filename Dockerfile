@@ -27,10 +27,9 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Copy application code
 COPY sift/ sift/
 COPY pages/ pages/
-COPY feeds.json .
 
-# Create directories for volumes
-RUN mkdir -p /app/output /app/knowledge /app/workspaces
+# Create workspace directory (data mounted via docker-compose volumes)
+RUN mkdir -p /app/workspaces
 
 # Default: run weekly digest
 ENTRYPOINT ["python3", "sift/cli.py"]

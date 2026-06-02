@@ -9,7 +9,6 @@ from sift.models import Digest, Entry, FeedResult, SourceConfig
 def test_source_config():
     sc = make_source()
     assert sc.name == "Test"
-    assert sc.lang == "en"
     assert sc.source_type == "rss"
     assert sc.enabled is True
     assert sc.tags == []

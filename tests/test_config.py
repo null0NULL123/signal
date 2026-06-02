@@ -6,7 +6,6 @@ import os
 
 from base import env_vars, temp_file, temp_json
 from sift.config import (
-    DEFAULT_SOURCE_LANG,
     DEFAULT_SOURCE_TYPE,
     get_env,
     get_float,
@@ -62,17 +61,15 @@ def test_load_env():
 def test_load_sources():
     data = [
         {"name": "Test Blog", "url": "https://example.com/rss"},
-        {"name": "Web Source", "url": "https://example.com", "source_type": "web", "lang": "zh"},
+        {"name": "Web Source", "url": "https://example.com", "source_type": "web"},
     ]
 
     with temp_json(data) as tmp_path:
         sources = load_sources(tmp_path)
         assert len(sources) == 2
         assert sources[0].name == "Test Blog"
-        assert sources[0].lang == DEFAULT_SOURCE_LANG
         assert sources[0].source_type == DEFAULT_SOURCE_TYPE
         assert sources[1].source_type == "web"
-        assert sources[1].lang == "zh"
 
 
 TESTS = [

@@ -17,13 +17,10 @@ from sift.models import SourceConfig
 # ---------------------------------------------------------------------------
 
 # Paths
-DEFAULT_FEEDS_PATH = "feeds.json"
-DEFAULT_DB_PATH = "sift/knowledge/knowledge.db"
-DEFAULT_OUTPUT_DIR = "output"
+DEFAULT_FEEDS_PATH = "feeds.json"  # Fallback only; workspace feeds.json takes priority
 DEFAULT_ENV_PATH = ".env"
 
 # Source defaults
-DEFAULT_SOURCE_LANG = "en"
 DEFAULT_SOURCE_TYPE = "rss"
 
 # Summary defaults
@@ -168,7 +165,6 @@ def load_sources(feeds_path: str | None = None) -> list[SourceConfig]:
         SourceConfig(
             name=item.get("name", ""),
             url=item.get("url", ""),
-            lang=item.get("lang", DEFAULT_SOURCE_LANG),
             source_type=item.get("source_type", DEFAULT_SOURCE_TYPE),
             enabled=item.get("enabled", True),
             tags=item.get("tags", []),

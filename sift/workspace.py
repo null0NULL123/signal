@@ -14,12 +14,12 @@ from pathlib import Path
 DEFAULT_WORKSPACE = "default"
 WORKSPACE_DIR = "workspaces"
 DEFAULT_FEEDS = [
-    {"name": "GitHub Blog", "url": "https://github.blog/feed/", "lang": "en"},
-    {"name": "Meta Engineering", "url": "https://engineering.fb.com/feed/", "lang": "en"},
-    {"name": "Netflix Tech Blog", "url": "https://netflixtechblog.com/feed", "lang": "en"},
-    {"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "lang": "en"},
-    {"name": "The Pragmatic Engineer", "url": "https://newsletter.pragmaticengineer.com/feed", "lang": "en"},
-    {"name": "Hacker News", "url": "https://news.ycombinator.com/", "lang": "en", "source_type": "web", "metadata": {"selector": ".athing", "title_sel": ".titleline > a", "summary_sel": "", "link_sel": ".titleline > a"}},
+    {"name": "GitHub Blog", "url": "https://github.blog/feed/"},
+    {"name": "Meta Engineering", "url": "https://engineering.fb.com/feed/"},
+    {"name": "Netflix Tech Blog", "url": "https://netflixtechblog.com/feed"},
+    {"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/"},
+    {"name": "The Pragmatic Engineer", "url": "https://newsletter.pragmaticengineer.com/feed"},
+    {"name": "Hacker News", "url": "https://news.ycombinator.com/", "source_type": "web", "metadata": {"selector": ".athing", "title_sel": ".titleline > a", "summary_sel": "", "link_sel": ".titleline > a"}},
 ]
 
 
@@ -46,9 +46,6 @@ def list_workspaces() -> list[str]:
 
 def get_workspace_path(name: str) -> Path:
     """Get the path to a workspace directory."""
-    if name == DEFAULT_WORKSPACE:
-        # Default workspace uses project root (backward compatible)
-        return Path(__file__).parent.parent
     return get_workspace_root() / name
 
 
@@ -59,16 +56,16 @@ def get_feeds_path(workspace: str = DEFAULT_WORKSPACE) -> Path:
 
 def get_db_path(workspace: str = DEFAULT_WORKSPACE) -> str:
     """Get database path for a workspace."""
-    ws_path = get_workspace_path(workspace)
-    if workspace == DEFAULT_WORKSPACE:
-        return str(ws_path / "knowledge" / "knowledge.db")
-    return str(ws_path / "knowledge.db")
+    return str(get_workspace_path(workspace) / "knowledge.db")
+
+
+def get_output_path(workspace: str = DEFAULT_WORKSPACE) -> str:
+    """Get output directory path for a workspace."""
+    return str(get_workspace_path(workspace) / "output")
 
 
 def workspace_exists(name: str) -> bool:
     """Check if a workspace exists."""
-    if name == DEFAULT_WORKSPACE:
-        return True
     ws_path = get_workspace_path(name)
     return ws_path.exists() and (ws_path / "feeds.json").exists()
 
@@ -111,6 +108,7 @@ def delete_workspace(name: str) -> None:
         raise ValueError("Cannot delete the default workspace")
     if not workspace_exists(name):
         raise ValueError(f"Workspace '{name}' does not exist")
+
 
     ws_path = get_workspace_path(name)
     shutil.rmtree(ws_path)

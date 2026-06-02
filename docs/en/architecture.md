@@ -112,7 +112,7 @@ User browses article → Clicks 👍/👎 → Feedback written to DB
 
 ## Knowledge Accumulation
 
-Each time a report is generated, the system automatically stores articles in a local SQLite database (`sift/knowledge/knowledge.db`), gradually building your technical knowledge base:
+Each time a report is generated, the system automatically stores articles in a local SQLite database (`workspaces/default/knowledge.db`), gradually building your technical knowledge base:
 
 - **Article storage**: All fetched articles are automatically stored, deduplicated by hash, no duplicate storage
 - **Feedback accumulation**: User's 👍/👎 on articles persistently stored, forming preference profile
@@ -122,7 +122,7 @@ Each time a report is generated, the system automatically stores articles in a l
 - **Preference injection**: When generating reports, Feedback Engine's aggregated topic/source weights are automatically injected into prompt, making summaries align with user interests
 
 **Why use SQLite + sqlite-vec?**
-- Single file storage (`sift/knowledge/knowledge.db`), zero operations, can run directly on phone
+- Single file storage (`workspaces/default/knowledge.db`), zero operations, can run directly on phone
 - Structured queries (filter by time, source) and vector search (semantic similarity) share the same database
 - sqlite-vec is an official SQLite extension, pure C implementation, no external dependencies
 

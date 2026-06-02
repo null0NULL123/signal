@@ -13,11 +13,9 @@ from pathlib import Path
 import sqlite_vec
 
 from sift.config import (
-    DEFAULT_DB_PATH,
     DEFAULT_EMBEDDING_DIM,
     EMBEDDING_MAX_INPUT_LENGTH,
     HASH_TRUNCATE_LENGTH,
-    get_env,
     get_int,
 )
 from sift.models import ArticleRecord
@@ -34,7 +32,10 @@ class BaseStorage:
         """Get database connection with sqlite-vec loaded. Reuses connection within a run."""
         if self._conn is not None:
             return self._conn
-        db_path = self._db_path or get_env("DB_PATH", DEFAULT_DB_PATH)
+        if self._db_path is None:
+            from sift.workspace import get_db_path, get_active_workspace
+            self._db_path = get_db_path(get_active_workspace())
+        db_path = self._db_path
         Path(db_path).parent.mkdir(parents=True, exist_ok=True)
         db = sqlite3.connect(db_path, check_same_thread=False)
         db.execute("PRAGMA journal_mode=WAL")

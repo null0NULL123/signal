@@ -15,8 +15,8 @@ class FileChannel(BaseChannel):
     """Save digest to a local markdown file."""
 
     def __init__(self, output_dir: str | None = None) -> None:
-        from sift.config import get_env, DEFAULT_OUTPUT_DIR
-        self.output_dir = output_dir or get_env("OUTPUT_DIR", DEFAULT_OUTPUT_DIR)
+        from sift.workspace import get_output_path, get_active_workspace
+        self.output_dir = output_dir or get_output_path(get_active_workspace())
 
     @property
     def name(self) -> str:

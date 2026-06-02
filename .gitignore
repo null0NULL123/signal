@@ -1,9 +1,6 @@
 .env
-output/
 __pycache__/
 *.pyc
 .venv/
-sift/knowledge/*.db
-sift/knowledge/*.db-shm
-sift/knowledge/*.db-wal
 workspaces/
+site/
