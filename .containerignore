@@ -12,6 +12,5 @@ site/
 output/
 knowledge/
 workspaces/
-.streamlit/
 *.md
 LICENSE

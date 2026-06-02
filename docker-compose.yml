@@ -1,10 +1,22 @@
 services:
   sift:
-    build: .
+    build:
+      context: .
+      target: core
     container_name: sift
     env_file: .env
     volumes:
       - ./workspaces:/app/workspaces
       - ./site:/app/site
-    # Override CMD to run full pipeline
     command: ["run"]
+
+  sift-ui:
+    build:
+      context: .
+      target: ui
+    container_name: sift-ui
+    env_file: .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./workspaces:/app/workspaces
