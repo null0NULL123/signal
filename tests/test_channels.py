@@ -80,17 +80,25 @@ def test_email_channel():
 
 
 def test_email_send_real():
-    """Test SMTP connection and auth only (no actual email sent)."""
+    """Test SMTP connection and auth. Set SEND_TEST_EMAIL=1 to actually send."""
     required = ["SMTP_SERVER", "SMTP_SENDER", "SMTP_AUTH_CODE"]
     if not all(os.environ.get(k) for k in required):
         return
 
     ch = EmailChannel()
-    with smtplib.SMTP(ch.smtp_server, ch.smtp_port, timeout=ch._timeout) as server:
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
-        server.login(ch.sender, ch.auth_code)
+    try:
+        with smtplib.SMTP(ch.smtp_server, ch.smtp_port, timeout=ch._timeout) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(ch.sender, ch.auth_code)
+    except (TimeoutError, OSError, smtplib.SMTPException) as e:
+        import pytest
+        pytest.skip(f"SMTP server unreachable: {e}")
+
+    if os.environ.get("SEND_TEST_EMAIL") == "1":
+        d = Digest(content="# Test Email\n\nThis is a test from Sift test suite.\n\n- Item 1\n- Item 2")
+        assert ch.send(d) is True
 
 
 TESTS = [
