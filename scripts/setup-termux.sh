@@ -2,6 +2,9 @@
 # Sift - One-click setup for Termux (Android)
 set -e
 
+# Always run from project root (parent of scripts/)
+cd "$(dirname "$0")/.."
+
 echo "=== Sift Setup ==="
 
 # Check Python

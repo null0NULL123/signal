@@ -104,7 +104,7 @@ Termux 环境下可一键部署：
 
 ```bash
 git clone <repo> sift && cd sift
-bash setup.sh
+bash scripts/setup-termux.sh
 vi .env
 .venv/bin/python3 sift/cli.py run
 crond  # 启动定时任务

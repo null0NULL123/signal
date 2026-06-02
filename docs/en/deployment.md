@@ -104,7 +104,7 @@ One-click deployment under Termux environment:
 
 ```bash
 git clone <repo> sift && cd sift
-bash setup.sh
+bash scripts/setup-termux.sh
 vi .env
 .venv/bin/python3 sift/cli.py run
 crond  # Start scheduled tasks
